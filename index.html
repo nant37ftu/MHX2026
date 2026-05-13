@@ -57,10 +57,8 @@ html, body, #root { height: 100%; }
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, 'Inter', 'Roboto', sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--text);
-  background: var(--bg);
+  font-size: 14px; line-height: 1.5;
+  color: var(--text); background: var(--bg);
   -webkit-font-smoothing: antialiased;
 }
 h1 { font-size: 22px; font-weight: 600; margin: 0; }
@@ -69,7 +67,7 @@ h3 { font-size: 16px; font-weight: 600; margin: 0; }
 button { font-family: inherit; cursor: pointer; }
 input, textarea, select { font-family: inherit; font-size: inherit; }
 
-/* ============================== LOGIN / PINPAD ============================== */
+/* ============================== LOGIN ============================== */
 .login-shell {
   min-height: 100%;
   display: flex; align-items: center; justify-content: center;
@@ -78,15 +76,12 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 }
 .login-card {
   width: 100%; max-width: 380px;
-  background: var(--surface);
-  border-radius: 16px;
-  box-shadow: var(--shadow-2);
-  padding: 28px 24px;
+  background: var(--surface); border-radius: 16px;
+  box-shadow: var(--shadow-2); padding: 28px 24px;
 }
 .login-brand { text-align: center; margin-bottom: 18px; }
 .login-brand .logo {
-  width: 56px; height: 56px;
-  border-radius: 14px;
+  width: 56px; height: 56px; border-radius: 14px;
   background: var(--primary); color: white;
   display: inline-flex; align-items: center; justify-content: center;
   font-weight: 700; font-size: 22px; margin-bottom: 10px;
@@ -100,10 +95,8 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 }
 .user-chip {
   display: flex; align-items: center; gap: 6px;
-  padding: 6px 10px;
-  background: var(--surface-alt);
-  border: 1px solid var(--border);
-  border-radius: 999px;
+  padding: 6px 10px; background: var(--surface-alt);
+  border: 1px solid var(--border); border-radius: 999px;
   font-size: 12px; color: var(--text-muted);
 }
 .user-chip .av {
@@ -115,8 +108,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 .pin-dots { display: flex; justify-content: center; gap: 14px; margin: 12px 0 18px; }
 .pin-dots span {
   width: 14px; height: 14px; border-radius: 50%;
-  background: var(--surface-alt);
-  border: 1px solid var(--border-strong);
+  background: var(--surface-alt); border: 1px solid var(--border-strong);
   transition: all .15s;
 }
 .pin-dots span.filled { background: var(--primary); border-color: var(--primary); transform: scale(1.05); }
@@ -130,11 +122,10 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 .pin-btn:hover { background: var(--surface-alt); border-color: var(--border-strong); }
 .pin-btn:active { transform: scale(.97); }
 .pin-btn.muted { color: var(--text-muted); font-size: 14px; font-weight: 500; }
-
 .pin-error { text-align: center; color: var(--danger); font-size: 13px; min-height: 18px; margin-top: 10px; }
 .login-version { text-align: center; color: var(--text-faint); font-size: 11px; margin-top: 14px; }
 
-/* ============================== APP LAYOUT ============================== */
+/* ============================== LAYOUT ============================== */
 .app-shell { display: flex; height: 100%; background: var(--bg); }
 .sidebar {
   width: var(--sidebar-w); background: var(--surface);
@@ -153,7 +144,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
   font-weight: 700; font-size: 14px;
 }
 .sb-brand .name { font-weight: 700; font-size: 15px; }
-.sb-brand .proj { font-size: 11px; color: var(--text-muted); }
+.sb-brand .proj { font-size: 11px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 160px; }
 
 .sb-nav { flex: 1; padding: 8px; overflow-y: auto; }
 .sb-nav-item {
@@ -179,10 +170,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 .sb-user .info { flex: 1; min-width: 0; }
 .sb-user .nm { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .sb-user .rl { font-size: 11px; color: var(--text-muted); }
-.sb-user .logout {
-  background: transparent; border: none; padding: 4px 6px;
-  color: var(--text-muted); border-radius: 6px;
-}
+.sb-user .logout { background: transparent; border: none; padding: 4px 6px; color: var(--text-muted); border-radius: 6px; }
 .sb-user .logout:hover { background: var(--danger-bg); color: var(--danger); }
 
 .conn-row { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text-muted); padding: 0 4px; }
@@ -200,10 +188,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
   display: flex; align-items: center;
   padding: 0 18px; gap: 14px; flex-shrink: 0;
 }
-.hamburger {
-  display: none; background: transparent; border: none;
-  padding: 6px; border-radius: 6px; font-size: 20px;
-}
+.hamburger { display: none; background: transparent; border: none; padding: 6px; border-radius: 6px; font-size: 20px; }
 .hamburger:hover { background: var(--surface-alt); }
 .tb-title { flex: 1; font-size: 15px; font-weight: 600; }
 .tb-actions { display: flex; gap: 8px; align-items: center; }
@@ -221,6 +206,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 .btn.danger:hover { background: #B91C1C; border-color: #B91C1C; }
 .btn.ghost { border-color: transparent; background: transparent; }
 .btn.sm { padding: 5px 9px; min-height: 28px; font-size: 12px; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
 
 .content { flex: 1; overflow-y: auto; padding: 20px; }
 
@@ -239,18 +225,20 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
   border-radius: var(--radius); padding: 16px; margin-bottom: 16px; box-shadow: var(--shadow-1);
 }
 .section h3 { margin-bottom: 12px; }
+.section-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.section-head h3 { margin: 0; }
 
 .goal-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
 .goal-row:last-child { border-bottom: none; }
 .goal-row .title { flex: 1; font-size: 13px; }
 .goal-row .bar { flex: 0 0 140px; height: 8px; border-radius: 999px; background: var(--surface-alt); overflow: hidden; }
-.goal-row .bar > span { display: block; height: 100%; background: var(--primary); }
+.goal-row .bar > span { display: block; height: 100%; background: var(--primary); transition: width .3s; }
 .goal-row .count { width: 60px; text-align: right; font-size: 12px; color: var(--text-muted); }
 
-.due-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; cursor: pointer; }
+.due-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; cursor: pointer; border-radius: 4px; }
 .due-row:hover { background: var(--surface-alt); }
 .due-row:last-child { border-bottom: none; }
-.due-row .pri { width: 6px; height: 24px; border-radius: 3px; }
+.due-row .pri { width: 6px; height: 24px; border-radius: 3px; flex-shrink: 0; }
 .due-row .pri.high, .due-row .pri.urgent { background: var(--danger); }
 .due-row .pri.normal { background: var(--primary); }
 .due-row .pri.low { background: var(--text-faint); }
@@ -267,10 +255,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 .kb-col-head { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 13px; font-weight: 600; }
 .kb-col-head .dot { width: 8px; height: 8px; border-radius: 50%; }
 .kb-col-head .count { color: var(--text-muted); font-weight: 500; font-size: 12px; }
-.kb-col-head .plus {
-  margin-left: auto; background: transparent; border: none;
-  width: 24px; height: 24px; border-radius: 6px; color: var(--text-muted);
-}
+.kb-col-head .plus { margin-left: auto; background: transparent; border: none; width: 24px; height: 24px; border-radius: 6px; color: var(--text-muted); }
 .kb-col-head .plus:hover { background: var(--surface); color: var(--text); }
 
 .kb-card {
@@ -296,6 +281,11 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 .badge.pri-high, .badge.pri-urgent { background: var(--danger-bg); color: var(--danger); }
 .badge.pri-normal { background: var(--primary-bg); color: var(--primary-hover); }
 .badge.pri-low    { background: var(--surface-alt); color: var(--text-muted); }
+.badge.st-backlog { background: #F1F5F9; color: var(--st-backlog); }
+.badge.st-todo    { background: #EFF6FF; color: var(--st-todo); }
+.badge.st-doing   { background: #FEF3C7; color: var(--st-doing); }
+.badge.st-review  { background: #F5F3FF; color: var(--st-review); }
+.badge.st-done    { background: #F0FDF4; color: var(--st-done); }
 
 .avatar {
   width: 22px; height: 22px; border-radius: 50%;
@@ -304,6 +294,104 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 }
 .due-tag { font-size: 11px; color: var(--text-muted); margin-left: auto; }
 .due-tag.overdue { color: var(--danger); font-weight: 600; }
+
+/* ============================== TIMELINE ============================== */
+.tl-toolbar { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+.tl-toolbar .sw { display: inline-flex; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; background: var(--surface); }
+.tl-toolbar .sw button { background: transparent; border: none; padding: 6px 12px; font-size: 12px; color: var(--text-muted); }
+.tl-toolbar .sw button.on { background: var(--primary); color: white; }
+
+.timeline {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 0;
+  box-shadow: var(--shadow-1); overflow: auto;
+}
+.tl-grid { min-width: 800px; }
+.tl-row { display: grid; grid-template-columns: 200px 1fr; border-bottom: 1px solid var(--border); }
+.tl-row:last-child { border-bottom: none; }
+.tl-row.tl-head { background: var(--surface-alt); font-size: 11px; color: var(--text-muted); }
+.tl-row.tl-group { background: var(--bg); }
+.tl-row.tl-group .tl-label { font-weight: 600; color: var(--text); padding: 6px 12px; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+.tl-label {
+  padding: 8px 12px; font-size: 13px;
+  border-right: 1px solid var(--border);
+  background: var(--surface);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  display: flex; align-items: center;
+}
+.tl-row.tl-task .tl-label { color: var(--text); }
+.tl-row.tl-head .tl-label { background: var(--surface-alt); }
+.tl-bars { position: relative; height: 36px; background-image: linear-gradient(to right, var(--border) 1px, transparent 1px); background-size: calc(100% / var(--days, 30)) 100%; }
+.tl-row.tl-head .tl-bars { height: 28px; }
+.tl-row.tl-head .tl-bars span {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  font-size: 10px; color: var(--text-muted);
+  white-space: nowrap; padding: 0 4px;
+}
+.tl-row.tl-head .tl-bars span.today {
+  color: var(--primary); font-weight: 600;
+}
+.tl-bar {
+  position: absolute; top: 6px; height: 24px;
+  border-radius: 5px; color: white; font-size: 11px;
+  display: flex; align-items: center; padding: 0 8px;
+  cursor: pointer; transition: filter .1s, transform .1s;
+  overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+  min-width: 8px;
+}
+.tl-bar:hover { filter: brightness(1.1); transform: translateY(-1px); }
+.tl-today {
+  position: absolute; top: 0; bottom: 0;
+  width: 1.5px; background: var(--danger);
+  z-index: 2;
+}
+
+/* ============================== GOALS VIEW ============================== */
+.goals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 14px;
+}
+.goal-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px; box-shadow: var(--shadow-1);
+}
+.goal-card .gh { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.goal-card h3 { font-size: 15px; margin-bottom: 8px; }
+.goal-card .bar { height: 8px; border-radius: 999px; background: var(--surface-alt); overflow: hidden; margin: 8px 0; }
+.goal-card .bar > span { display: block; height: 100%; background: var(--primary); transition: width .3s; }
+.goal-card .meta { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-muted); }
+.goal-card .meta .pct { font-weight: 600; color: var(--text); }
+.goal-card .task-list { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
+.goal-card .task-row {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 8px; border-radius: 6px;
+  font-size: 12px; cursor: pointer;
+}
+.goal-card .task-row:hover { background: var(--surface-alt); }
+.goal-card .task-row .ttl { flex: 1; }
+.goal-card .task-row .ttl.done { text-decoration: line-through; color: var(--text-muted); }
+
+/* ============================== SETTINGS ============================== */
+.tabs {
+  display: flex; gap: 4px; border-bottom: 1px solid var(--border);
+  margin-bottom: 18px;
+}
+.tabs button {
+  background: transparent; border: none; padding: 10px 16px;
+  font-size: 14px; color: var(--text-muted); font-weight: 500;
+  border-bottom: 2.5px solid transparent; margin-bottom: -1px;
+}
+.tabs button.on { color: var(--primary); border-bottom-color: var(--primary); font-weight: 600; }
+
+.user-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.user-table th { text-align: left; padding: 8px 10px; color: var(--text-muted); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .03em; border-bottom: 1px solid var(--border); }
+.user-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); }
+.user-table tr:last-child td { border-bottom: none; }
+.user-table input, .user-table select { background: transparent; border: 1px solid transparent; padding: 4px 6px; border-radius: 4px; width: 100%; }
+.user-table input:hover, .user-table select:hover { border-color: var(--border); background: var(--surface); }
+.user-table input:focus, .user-table select:focus { border-color: var(--primary); background: var(--surface); outline: none; }
+.user-table .color-swatch { width: 24px; height: 24px; border-radius: 50%; cursor: pointer; border: 2px solid var(--surface); box-shadow: 0 0 0 1px var(--border); }
 
 /* ============================== STATES ============================== */
 .placeholder {
@@ -357,8 +445,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
   position: fixed; inset: 0;
   background: rgba(15,23,42,.5);
   display: flex; align-items: center; justify-content: center;
-  z-index: 500;
-  padding: 20px;
+  z-index: 500; padding: 20px;
   animation: fadeIn .15s;
 }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -366,25 +453,16 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
   background: var(--surface); border-radius: 14px;
   box-shadow: var(--shadow-3);
   max-width: 640px; width: 100%;
-  max-height: 90vh; overflow-y: auto;
+  max-height: 90vh; display: flex; flex-direction: column;
   animation: slideUp .2s;
 }
 @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-.modal-head {
-  display: flex; align-items: center; gap: 10px;
-  padding: 14px 18px; border-bottom: 1px solid var(--border);
-}
+.modal-head { display: flex; align-items: center; gap: 10px; padding: 14px 18px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
 .modal-head .ttl { flex: 1; font-size: 16px; font-weight: 600; }
-.modal-head .close {
-  background: transparent; border: none; font-size: 20px;
-  color: var(--text-muted); padding: 4px 8px; border-radius: 6px;
-}
+.modal-head .close { background: transparent; border: none; font-size: 20px; color: var(--text-muted); padding: 4px 8px; border-radius: 6px; }
 .modal-head .close:hover { background: var(--surface-alt); color: var(--text); }
-.modal-body { padding: 18px; }
-.modal-foot {
-  padding: 12px 18px; border-top: 1px solid var(--border);
-  display: flex; justify-content: flex-end; gap: 8px;
-}
+.modal-body { padding: 18px; overflow-y: auto; flex: 1; }
+.modal-foot { padding: 12px 18px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: 8px; flex-shrink: 0; }
 
 .field { margin-bottom: 14px; }
 .field label {
@@ -400,7 +478,6 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 }
 .input:focus, .select:focus, .textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-bg); }
 .textarea { min-height: 80px; resize: vertical; font-family: inherit; line-height: 1.5; }
-
 .title-edit {
   width: 100%; padding: 6px 8px;
   border: 1px solid transparent; border-radius: var(--radius-sm);
@@ -409,23 +486,31 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 }
 .title-edit:hover { background: var(--surface-alt); }
 .title-edit:focus { border-color: var(--primary); background: var(--surface); }
+.meta-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 14px; margin-bottom: 14px; }
 
-.meta-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr);
-  gap: 10px 14px; margin-bottom: 14px;
-}
+/* ============================== ACTIVITY LOG ============================== */
+.activity-section { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--border); }
+.activity-section h4 { font-size: 13px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: .03em; margin: 0 0 12px; }
+.activity-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; max-height: 280px; overflow-y: auto; }
+.activity-item { display: flex; gap: 10px; align-items: flex-start; }
+.activity-item .av { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: white; font-size: 11px; font-weight: 600; }
+.activity-item .body { flex: 1; min-width: 0; font-size: 13px; }
+.activity-item .body .who { font-weight: 600; }
+.activity-item .body .when { color: var(--text-faint); font-size: 11px; margin-left: 6px; }
+.activity-item .body .text { margin-top: 2px; }
+.activity-item.system .body .text { color: var(--text-muted); font-style: italic; }
 
-/* ============================== SIDEBAR OVERLAY (mobile) ============================== */
+.comment-input { display: flex; gap: 8px; align-items: flex-start; }
+.comment-input textarea { flex: 1; min-height: 40px; max-height: 120px; padding: 8px 10px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); resize: vertical; font-size: 13px; font-family: inherit; outline: none; }
+.comment-input textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-bg); }
+
+/* ============================== MISC ============================== */
 .sb-overlay { display: none; }
 
 /* ============================== RESPONSIVE ============================== */
 @media (max-width: 1023px) {
   .stat-grid { grid-template-columns: repeat(2, 1fr); }
-  .kanban {
-    overflow-x: auto; grid-auto-flow: column;
-    grid-auto-columns: 260px; grid-template-columns: none;
-    padding-bottom: 8px;
-  }
+  .kanban { overflow-x: auto; grid-auto-flow: column; grid-auto-columns: 260px; grid-template-columns: none; padding-bottom: 8px; }
 }
 @media (max-width: 768px) {
   :root { --sidebar-w: 240px; }
@@ -436,15 +521,13 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
     box-shadow: 2px 0 16px rgba(0,0,0,.15);
   }
   .sidebar.open { transform: translateX(0); }
-  .sb-overlay {
-    display: block; position: fixed; inset: 0;
-    background: rgba(15,23,42,.45); z-index: 150;
-  }
+  .sb-overlay { display: block; position: fixed; inset: 0; background: rgba(15,23,42,.45); z-index: 150; }
   .content { padding: 14px; }
   .stat-grid { gap: 10px; }
   .stat-card { padding: 10px 12px; }
   .stat-card .value { font-size: 20px; }
   .meta-grid { grid-template-columns: 1fr; }
+  .tl-row { grid-template-columns: 130px 1fr; }
 }
 @media (max-width: 480px) {
   .stat-grid { grid-template-columns: 1fr; }
@@ -461,7 +544,7 @@ const { useState, useEffect, useRef, useCallback, useMemo } = React;
 // =====================================================
 // CONFIG
 // =====================================================
-const VERSION = "0.5.0";
+const VERSION = "1.0.0";
 
 const SUPABASE_URL = "https://oczwzcmgqcdjrozgyisr.supabase.co";
 const SUPABASE_KEY = "sb_publishable_RPYFrPM8CH32qHvODzkC_Q_Autu1lRC";
@@ -472,7 +555,7 @@ const sb = SUPABASE_READY
   : null;
 
 // =====================================================
-// ROLE PERMISSIONS
+// CONSTANTS
 // =====================================================
 const ROLE_PERMS = {
   lead_pm:     { canManageUsers: true,  canDeleteAnyTask: true,  canSeeAllAreas: true  },
@@ -480,8 +563,10 @@ const ROLE_PERMS = {
   sub_content: { canManageUsers: false, canDeleteAnyTask: false, canSeeAllAreas: true  },
   sub_ops:     { canManageUsers: false, canDeleteAnyTask: false, canSeeAllAreas: true  },
 };
-
+const ROLE_OPTS = ["lead_pm", "lead_tech", "sub_content", "sub_ops"];
 const AREA_LABEL    = { pm: "PM", tech: "Tech", content: "Content", ops: "Ops" };
+const AREA_OPTS     = ["pm", "tech", "content", "ops"];
+const AREA_COLOR_VAR = { pm: "var(--area-pm)", tech: "var(--area-tech)", content: "var(--area-content)", ops: "var(--area-ops)" };
 const PRIORITY_OPTS = ["low", "normal", "high", "urgent"];
 const STATUS_COLS = [
   { k: "backlog", label: "Backlog", color: "var(--st-backlog)" },
@@ -490,65 +575,21 @@ const STATUS_COLS = [
   { k: "review",  label: "Review",  color: "var(--st-review)"  },
   { k: "done",    label: "Done",    color: "var(--st-done)"    },
 ];
+const COLOR_SWATCHES = ["#7C3AED","#1D4ED8","#16A34A","#EA580C","#DC2626","#0891B2","#A855F7","#F59E0B","#0F766E","#BE123C"];
 
 // =====================================================
-// fromDb / toDb MAPPERS
+// MAPPERS
 // =====================================================
-const userFromDb = r => ({
-  id: r.id, pin: r.pin, fullName: r.full_name, role: r.role,
-  area: r.area, color: r.color, isActive: r.is_active, createdAt: r.created_at
-});
-const userToDb = u => ({
-  id: u.id, pin: u.pin, full_name: u.fullName, role: u.role,
-  area: u.area, color: u.color, is_active: u.isActive
-});
-
-const projectFromDb = r => ({
-  id: r.id, name: r.name, description: r.description,
-  startAt: r.start_at, endAt: r.end_at, isArchived: r.is_archived
-});
-const projectToDb = p => ({
-  id: p.id, name: p.name, description: p.description,
-  start_at: p.startAt, end_at: p.endAt, is_archived: p.isArchived
-});
-
-const goalFromDb = r => ({
-  id: r.id, projectId: r.project_id, title: r.title, description: r.description,
-  area: r.area, dueAt: r.due_at, status: r.status, sortOrder: r.sort_order,
-  createdBy: r.created_by, createdAt: r.created_at
-});
-const goalToDb = g => ({
-  id: g.id, project_id: g.projectId, title: g.title, description: g.description,
-  area: g.area, due_at: g.dueAt, status: g.status, sort_order: g.sortOrder,
-  created_by: g.createdBy
-});
-
-const taskFromDb = r => ({
-  id: r.id, projectId: r.project_id, goalId: r.goal_id,
-  title: r.title, description: r.description,
-  status: r.status, priority: r.priority, area: r.area,
-  assigneeId: r.assignee_id, createdBy: r.created_by,
-  startAt: r.start_at, dueAt: r.due_at, doneAt: r.done_at,
-  checklist: r.checklist || [], tags: r.tags || [],
-  sortOrder: r.sort_order, createdAt: r.created_at, updatedAt: r.updated_at
-});
-const taskToDb = t => ({
-  id: t.id, project_id: t.projectId, goal_id: t.goalId,
-  title: t.title, description: t.description,
-  status: t.status, priority: t.priority, area: t.area,
-  assignee_id: t.assigneeId, created_by: t.createdBy,
-  start_at: t.startAt, due_at: t.dueAt, done_at: t.doneAt,
-  checklist: t.checklist, tags: t.tags, sort_order: t.sortOrder
-});
-
-const activityFromDb = r => ({
-  id: r.id, taskId: r.task_id, userId: r.user_id,
-  kind: r.kind, payload: r.payload || {}, createdAt: r.created_at
-});
-const activityToDb = a => ({
-  id: a.id, task_id: a.taskId, user_id: a.userId,
-  kind: a.kind, payload: a.payload
-});
+const userFromDb = r => ({ id: r.id, pin: r.pin, fullName: r.full_name, role: r.role, area: r.area, color: r.color, isActive: r.is_active, createdAt: r.created_at });
+const userToDb   = u => ({ id: u.id, pin: u.pin, full_name: u.fullName, role: u.role, area: u.area, color: u.color, is_active: u.isActive });
+const projectFromDb = r => ({ id: r.id, name: r.name, description: r.description, startAt: r.start_at, endAt: r.end_at, isArchived: r.is_archived });
+const projectToDb   = p => ({ id: p.id, name: p.name, description: p.description, start_at: p.startAt, end_at: p.endAt, is_archived: p.isArchived });
+const goalFromDb = r => ({ id: r.id, projectId: r.project_id, title: r.title, description: r.description, area: r.area, dueAt: r.due_at, status: r.status, sortOrder: r.sort_order, createdBy: r.created_by, createdAt: r.created_at });
+const goalToDb   = g => ({ id: g.id, project_id: g.projectId, title: g.title, description: g.description, area: g.area, due_at: g.dueAt, status: g.status, sort_order: g.sortOrder, created_by: g.createdBy });
+const taskFromDb = r => ({ id: r.id, projectId: r.project_id, goalId: r.goal_id, title: r.title, description: r.description, status: r.status, priority: r.priority, area: r.area, assigneeId: r.assignee_id, createdBy: r.created_by, startAt: r.start_at, dueAt: r.due_at, doneAt: r.done_at, checklist: r.checklist || [], tags: r.tags || [], sortOrder: r.sort_order, createdAt: r.created_at, updatedAt: r.updated_at });
+const taskToDb   = t => ({ id: t.id, project_id: t.projectId, goal_id: t.goalId, title: t.title, description: t.description, status: t.status, priority: t.priority, area: t.area, assignee_id: t.assigneeId, created_by: t.createdBy, start_at: t.startAt, due_at: t.dueAt, done_at: t.doneAt, checklist: t.checklist, tags: t.tags, sort_order: t.sortOrder });
+const activityFromDb = r => ({ id: r.id, taskId: r.task_id, userId: r.user_id, kind: r.kind, payload: r.payload || {}, createdAt: r.created_at });
+const activityToDb   = a => ({ id: a.id, task_id: a.taskId, user_id: a.userId, kind: a.kind, payload: a.payload });
 
 // =====================================================
 // HELPERS
@@ -558,19 +599,37 @@ const initials = (name) => {
   const parts = name.trim().split(/\s+/);
   return parts.map(w => w[0]).slice(-2).join("").toUpperCase();
 };
-const isOverdue = (dueAt) => dueAt && new Date(dueAt) < new Date(new Date().toDateString());
+const todayStart = () => { const d = new Date(); d.setHours(0,0,0,0); return d; };
+const isOverdue = (dueAt) => dueAt && new Date(dueAt) < todayStart();
 const fmtDate = (s) => {
   if (!s) return "";
   const d = new Date(s);
   return `${String(d.getDate()).padStart(2,"0")}/${String(d.getMonth()+1).padStart(2,"0")}`;
 };
+const fmtDateTime = (s) => {
+  if (!s) return "";
+  const d = new Date(s);
+  return `${fmtDate(s)} ${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}`;
+};
+const fmtRelative = (s) => {
+  if (!s) return "";
+  const diff = (Date.now() - new Date(s).getTime()) / 1000;
+  if (diff < 60) return "vừa xong";
+  if (diff < 3600) return `${Math.floor(diff/60)} phút trước`;
+  if (diff < 86400) return `${Math.floor(diff/3600)} giờ trước`;
+  if (diff < 604800) return `${Math.floor(diff/86400)} ngày trước`;
+  return fmtDateTime(s);
+};
 const newId = () => {
   if (window.crypto?.randomUUID) return window.crypto.randomUUID();
   return "id-" + Date.now() + "-" + Math.random().toString(36).slice(2, 9);
 };
+const toDate = (s) => s ? new Date(s) : null;
+const daysBetween = (a, b) => Math.round((b - a) / 86400000);
+const addDays = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
 
 // =====================================================
-// useStateSync — diff-wrapper auto-sync (PLAYBOOK 5.2)
+// useStateSync — diff-wrapper auto-sync + realtime support
 // =====================================================
 function useStateSync(table, fromDb, toDb, onError) {
   const [data, _setData] = useState([]);
@@ -597,6 +656,7 @@ function useStateSync(table, fromDb, toDb, onError) {
       setLoading(false);
     })();
     return () => { cancelled = true; };
+  // eslint-disable-next-line
   }, [table]);
 
   const setData = useCallback((updater) => {
@@ -626,7 +686,27 @@ function useStateSync(table, fromDb, toDb, onError) {
     }
   }, [table, fromDb, toDb, onError]);
 
-  return [data, setData, { loading, error }];
+  // Realtime apply — bypass DB sync to avoid loops
+  const applyRemote = useCallback((payload) => {
+    if (payload.eventType === "DELETE") {
+      const id = payload.old?.id;
+      if (!id) return;
+      const next = ref.current.filter(x => x.id !== id);
+      ref.current = next;
+      _setData(next);
+    } else {
+      const incoming = fromDb(payload.new);
+      const existing = ref.current.find(x => x.id === incoming.id);
+      if (existing && JSON.stringify(existing) === JSON.stringify(incoming)) return;
+      const next = existing
+        ? ref.current.map(x => x.id === incoming.id ? incoming : x)
+        : [...ref.current, incoming];
+      ref.current = next;
+      _setData(next);
+    }
+  }, [fromDb]);
+
+  return [data, setData, { loading, error, applyRemote }];
 }
 
 // =====================================================
@@ -648,7 +728,6 @@ const useToast = () => {
 function PinPad({ length = 4, onComplete, disabled }) {
   const [pin, setPin] = useState("");
   useEffect(() => { if (disabled) setPin(""); }, [disabled]);
-
   const press = (n) => {
     if (disabled || pin.length >= length) return;
     const next = pin + String(n);
@@ -658,9 +737,7 @@ function PinPad({ length = 4, onComplete, disabled }) {
   return (
     <>
       <div className="pin-dots">
-        {Array.from({ length }).map((_, i) => (
-          <span key={i} className={pin.length > i ? "filled" : ""} />
-        ))}
+        {Array.from({ length }).map((_, i) => <span key={i} className={pin.length > i ? "filled" : ""} />)}
       </div>
       <div className="pin-grid">
         {[1,2,3,4,5,6,7,8,9].map(n => (
@@ -682,31 +759,26 @@ function LoginScreen({ users, loading, error, onLogin, toast, onRetry }) {
   const [attempts, setAttempts] = useState(0);
   const [lockedUntil, setLockedUntil] = useState(0);
   const [, setTick] = useState(0);
-
   useEffect(() => {
     if (lockedUntil === 0) return;
     const t = setInterval(() => setTick(x => x + 1), 250);
     return () => clearInterval(t);
   }, [lockedUntil]);
-
   const locked = lockedUntil > Date.now();
   const remain = Math.max(0, Math.ceil((lockedUntil - Date.now()) / 1000));
-
   const tryLogin = (pin) => {
     if (locked) return;
     const u = users.find(x => x.pin === pin && x.isActive);
     if (u) {
       localStorage.setItem("leadhub_pin", pin);
       setPinError(""); setAttempts(0);
-      onLogin(u);
-      toast(`Chào ${u.fullName}!`, "success");
+      onLogin(u); toast(`Chào ${u.fullName}!`, "success");
     } else {
       const next = attempts + 1; setAttempts(next);
       if (next >= 3) { setLockedUntil(Date.now() + 10000); setPinError("Sai PIN 3 lần — khoá 10s."); setAttempts(0); }
       else setPinError(`PIN không đúng (${next}/3)`);
     }
   };
-
   return (
     <div className="login-shell">
       <div className="login-card">
@@ -715,40 +787,30 @@ function LoginScreen({ users, loading, error, onLogin, toast, onRetry }) {
           <div className="title">LeadHub</div>
           <div className="sub">Đăng nhập bằng PIN 4 số</div>
         </div>
-
         {error && (
           <div className="error-banner">
             <b>Không kết nối được Supabase</b>
             {error.message || String(error)}
-            <div style={{ marginTop: 8 }}>
-              <button className="btn sm" onClick={onRetry}>Thử lại</button>
-            </div>
+            <div style={{ marginTop: 8 }}><button className="btn sm" onClick={onRetry}>Thử lại</button></div>
           </div>
         )}
-
         {loading ? (
-          <div className="loading-shell" style={{ minHeight: 180 }}>
-            <div className="spinner" /> Đang tải users…
-          </div>
+          <div className="loading-shell" style={{ minHeight: 180 }}><div className="spinner" /> Đang tải users…</div>
         ) : (
           <>
             <div className="user-chips">
-              {users.map(u => (
+              {users.filter(u => u.isActive).map(u => (
                 <div key={u.id} className="user-chip" title={`PIN: ${u.pin}`}>
                   <span className="av" style={{ background: u.color }}>{initials(u.fullName)}</span>
                   {u.fullName}
                 </div>
               ))}
             </div>
-
             <PinPad onComplete={tryLogin} disabled={locked} />
-            <div className="pin-error">
-              {locked ? `Khoá nhập — thử lại sau ${remain}s` : pinError}
-            </div>
+            <div className="pin-error">{locked ? `Khoá nhập — thử lại sau ${remain}s` : pinError}</div>
           </>
         )}
-
-        <div className="login-version">LeadHub v{VERSION} · Phase 1</div>
+        <div className="login-version">LeadHub v{VERSION}</div>
       </div>
     </div>
   );
@@ -765,16 +827,13 @@ const NAV_ITEMS = [
   { k: "mytasks",   label: "Việc của tôi", ic: "★" },
   { k: "settings",  label: "Cài đặt",      ic: "⚙" },
 ];
-
 function Sidebar({ open, onClose, screen, setScreen, currentUser, projectName, onLogout, connStatus }) {
   const perms = ROLE_PERMS[currentUser.role] || {};
   const items = NAV_ITEMS.filter(n => n.k !== "settings" || perms.canManageUsers);
-
   const connLabel = connStatus === "live" ? "Live"
     : connStatus === "connecting" ? "Đang kết nối"
     : connStatus === "offline" ? "Mất kết nối"
     : "Local mode";
-
   return (
     <>
       {open && <div className="sb-overlay" onClick={onClose} />}
@@ -786,24 +845,16 @@ function Sidebar({ open, onClose, screen, setScreen, currentUser, projectName, o
             <div className="proj">{projectName || "—"}</div>
           </div>
         </div>
-
         <nav className="sb-nav">
           {items.map(item => (
-            <button
-              key={item.k}
-              className={`sb-nav-item ${screen === item.k ? "active" : ""}`}
-              onClick={() => { setScreen(item.k); onClose(); }}
-            >
-              <span className="ic">{item.ic}</span>
-              <span>{item.label}</span>
+            <button key={item.k} className={`sb-nav-item ${screen === item.k ? "active" : ""}`} onClick={() => { setScreen(item.k); onClose(); }}>
+              <span className="ic">{item.ic}</span><span>{item.label}</span>
             </button>
           ))}
         </nav>
-
         <div className="sb-foot">
           <div className="conn-row">
-            <span className={`conn-dot ${connStatus}`} />
-            <span>{connLabel}</span>
+            <span className={`conn-dot ${connStatus}`} /><span>{connLabel}</span>
             <span style={{ marginLeft: "auto" }}>v{VERSION}</span>
           </div>
           <div className="sb-user">
@@ -839,58 +890,35 @@ function TopBar({ title, onMenu, onQuickAdd }) {
 // DASHBOARD
 // =====================================================
 function Dashboard({ tasks, goals, onOpenTask }) {
-  const stats = useMemo(() => {
-    const open = tasks.filter(t => t.status !== "done").length;
-    const doing = tasks.filter(t => t.status === "doing").length;
-    const overdue = tasks.filter(t => isOverdue(t.dueAt) && t.status !== "done").length;
-    const done = tasks.filter(t => t.status === "done").length;
-    return { open, doing, overdue, done };
-  }, [tasks]);
-
+  const stats = useMemo(() => ({
+    open:    tasks.filter(t => t.status !== "done").length,
+    doing:   tasks.filter(t => t.status === "doing").length,
+    overdue: tasks.filter(t => isOverdue(t.dueAt) && t.status !== "done").length,
+    done:    tasks.filter(t => t.status === "done").length,
+  }), [tasks]);
   const goalProgress = useMemo(() => goals.map(g => {
     const its = tasks.filter(t => t.goalId === g.id);
     const done = its.filter(t => t.status === "done").length;
     return { ...g, done, total: its.length, pct: its.length ? Math.round(done / its.length * 100) : 0 };
   }), [tasks, goals]);
-
   const upcoming = useMemo(() => [...tasks]
     .filter(t => t.status !== "done" && t.dueAt)
-    .sort((a, b) => a.dueAt.localeCompare(b.dueAt))
-    .slice(0, 5),
-  [tasks]);
-
+    .sort((a, b) => a.dueAt.localeCompare(b.dueAt)).slice(0, 5), [tasks]);
   return (
     <div>
       <div className="stat-grid">
-        <div className="stat-card">
-          <div className="label">Đang mở</div>
-          <div className="value">{stats.open}</div>
-          <div className="sub">Task chưa done</div>
-        </div>
-        <div className="stat-card">
-          <div className="label">Đang làm</div>
-          <div className="value" style={{ color: "var(--st-doing)" }}>{stats.doing}</div>
-          <div className="sub">Status: doing</div>
-        </div>
-        <div className="stat-card">
-          <div className="label">Quá hạn</div>
-          <div className="value" style={{ color: "var(--danger)" }}>{stats.overdue}</div>
-          <div className="sub">Cần xử lý gấp</div>
-        </div>
-        <div className="stat-card">
-          <div className="label">Hoàn thành</div>
-          <div className="value" style={{ color: "var(--success)" }}>{stats.done}</div>
-          <div className="sub">Tổng done</div>
-        </div>
+        <div className="stat-card"><div className="label">Đang mở</div><div className="value">{stats.open}</div><div className="sub">Task chưa done</div></div>
+        <div className="stat-card"><div className="label">Đang làm</div><div className="value" style={{ color: "var(--st-doing)" }}>{stats.doing}</div><div className="sub">Status: doing</div></div>
+        <div className="stat-card"><div className="label">Quá hạn</div><div className="value" style={{ color: "var(--danger)" }}>{stats.overdue}</div><div className="sub">Cần xử lý gấp</div></div>
+        <div className="stat-card"><div className="label">Hoàn thành</div><div className="value" style={{ color: "var(--success)" }}>{stats.done}</div><div className="sub">Tổng done</div></div>
       </div>
-
       <div className="section">
         <h3>Tiến độ mục tiêu</h3>
         {goalProgress.length === 0
           ? <div style={{ color: "var(--text-muted)", fontSize: 13, padding: 20, textAlign: "center" }}>Chưa có mục tiêu nào.</div>
           : goalProgress.map(g => (
               <div key={g.id} className="goal-row">
-                <span className={`badge area-${g.area}`}>{AREA_LABEL[g.area]}</span>
+                <span className={`badge area-${g.area}`}>{AREA_LABEL[g.area] || g.area}</span>
                 <span className="title">{g.title}</span>
                 <div className="bar"><span style={{ width: g.pct + "%" }} /></div>
                 <span className="count">{g.done}/{g.total}</span>
@@ -898,7 +926,6 @@ function Dashboard({ tasks, goals, onOpenTask }) {
             ))
         }
       </div>
-
       <div className="section">
         <h3>Task sắp đến deadline</h3>
         {upcoming.length === 0
@@ -921,11 +948,7 @@ function Dashboard({ tasks, goals, onOpenTask }) {
 // =====================================================
 function Kanban({ tasks, users, onCardClick, onAddInCol, emptyMsg }) {
   const userById = useMemo(() => Object.fromEntries(users.map(u => [u.id, u])), [users]);
-
-  if (tasks.length === 0 && emptyMsg) {
-    return <Placeholder icon="▤" title="Chưa có task" note={emptyMsg} />;
-  }
-
+  if (tasks.length === 0 && emptyMsg) return <Placeholder icon="▤" title="Chưa có task" note={emptyMsg} />;
   return (
     <div className="kanban">
       {STATUS_COLS.map(col => {
@@ -936,7 +959,7 @@ function Kanban({ tasks, users, onCardClick, onAddInCol, emptyMsg }) {
               <span className="dot" style={{ background: col.color }} />
               <span>{col.label}</span>
               <span className="count">{items.length}</span>
-              <button className="plus" title="Thêm task vào cột này" onClick={() => onAddInCol?.(col.k)}>+</button>
+              <button className="plus" title="Thêm task" onClick={() => onAddInCol?.(col.k)}>+</button>
             </div>
             {items.map(t => {
               const u = userById[t.assigneeId];
@@ -952,9 +975,7 @@ function Kanban({ tasks, users, onCardClick, onAddInCol, emptyMsg }) {
                 </div>
               );
             })}
-            {items.length === 0 && (
-              <div style={{ fontSize: 12, color: "var(--text-faint)", textAlign: "center", padding: "16px 0" }}>Trống</div>
-            )}
+            {items.length === 0 && <div style={{ fontSize: 12, color: "var(--text-faint)", textAlign: "center", padding: "16px 0" }}>Trống</div>}
           </div>
         );
       })}
@@ -963,95 +984,511 @@ function Kanban({ tasks, users, onCardClick, onAddInCol, emptyMsg }) {
 }
 
 // =====================================================
-// TASK DETAIL MODAL
+// TIMELINE (Gantt-lite)
 // =====================================================
-function TaskDetailModal({ task, users, goals, currentUser, onClose, onSave, onDelete }) {
-  const [draft, setDraft] = useState(task);
-  useEffect(() => { setDraft(task); }, [task]);
+function Timeline({ tasks, users, onTaskClick }) {
+  const [zoom, setZoom] = useState("month"); // 'week' | 'month'
+  const [groupBy, setGroupBy] = useState("area"); // 'area' | 'assignee'
 
+  const totalDays = zoom === "week" ? 14 : 60;
+  const rangeStart = useMemo(() => { const d = todayStart(); d.setDate(d.getDate() - Math.floor(totalDays / 4)); return d; }, [totalDays]);
+  const rangeEnd = useMemo(() => addDays(rangeStart, totalDays), [rangeStart, totalDays]);
+
+  const scheduled = tasks.filter(t => t.startAt && t.dueAt);
+  const unscheduled = tasks.filter(t => !t.startAt || !t.dueAt);
+
+  const userById = useMemo(() => Object.fromEntries(users.map(u => [u.id, u])), [users]);
+
+  const groups = useMemo(() => {
+    const map = new Map();
+    for (const t of scheduled) {
+      const key = groupBy === "area" ? t.area : (t.assigneeId || "__unassigned");
+      if (!map.has(key)) map.set(key, []);
+      map.get(key).push(t);
+    }
+    return Array.from(map.entries()).map(([key, items]) => ({
+      key,
+      label: groupBy === "area" ? (AREA_LABEL[key] || key) : (userById[key]?.fullName || "Chưa gán"),
+      items: items.sort((a, b) => a.startAt.localeCompare(b.startAt)),
+    }));
+  }, [scheduled, groupBy, userById]);
+
+  const datePct = (d) => {
+    const ms = new Date(d).getTime() - rangeStart.getTime();
+    return Math.max(0, Math.min(100, (ms / (totalDays * 86400000)) * 100));
+  };
+  const todayPct = datePct(todayStart());
+
+  const tickCount = zoom === "week" ? 14 : 12;
+  const ticks = useMemo(() => Array.from({ length: tickCount + 1 }, (_, i) => addDays(rangeStart, Math.round((i / tickCount) * totalDays))), [rangeStart, totalDays, tickCount]);
+
+  return (
+    <div>
+      <div className="tl-toolbar">
+        <div className="sw">
+          <button className={zoom === "week" ? "on" : ""} onClick={() => setZoom("week")}>Tuần</button>
+          <button className={zoom === "month" ? "on" : ""} onClick={() => setZoom("month")}>Tháng</button>
+        </div>
+        <div className="sw">
+          <button className={groupBy === "area" ? "on" : ""} onClick={() => setGroupBy("area")}>Theo mảng</button>
+          <button className={groupBy === "assignee" ? "on" : ""} onClick={() => setGroupBy("assignee")}>Theo người</button>
+        </div>
+        <span style={{ marginLeft: "auto", fontSize: 12, color: "var(--text-muted)" }}>
+          {scheduled.length} task có lịch · {unscheduled.length} chưa lên lịch
+        </span>
+      </div>
+
+      {scheduled.length === 0 ? (
+        <Placeholder icon="═" title="Không có task nào có lịch" note="Thêm start_at và due_at cho task để hiển thị trên Timeline." />
+      ) : (
+        <div className="timeline" style={{ "--days": totalDays }}>
+          <div className="tl-grid">
+            <div className="tl-row tl-head">
+              <div className="tl-label">Giai đoạn</div>
+              <div className="tl-bars">
+                {ticks.map((d, i) => (
+                  <span key={i} className={daysBetween(todayStart(), d) === 0 ? "today" : ""} style={{ left: datePct(d) + "%" }}>{fmtDate(d)}</span>
+                ))}
+                <div className="tl-today" style={{ left: todayPct + "%" }} />
+              </div>
+            </div>
+            {groups.map(g => (
+              <React.Fragment key={g.key}>
+                <div className="tl-row tl-group">
+                  <div className="tl-label">{g.label}</div>
+                  <div className="tl-bars" />
+                </div>
+                {g.items.map(t => {
+                  const left = datePct(t.startAt);
+                  const right = datePct(t.dueAt);
+                  const width = Math.max(0.8, right - left);
+                  const color = groupBy === "area" ? AREA_COLOR_VAR[t.area] : (userById[t.assigneeId]?.color || "#64748B");
+                  return (
+                    <div key={t.id} className="tl-row tl-task">
+                      <div className="tl-label" title={t.title}>{t.title}</div>
+                      <div className="tl-bars">
+                        <div className="tl-today" style={{ left: todayPct + "%" }} />
+                        <div
+                          className="tl-bar"
+                          style={{ left: left + "%", width: width + "%", background: color, opacity: t.status === "done" ? 0.45 : 1 }}
+                          onClick={() => onTaskClick?.(t)}
+                          title={`${t.title}\n${t.startAt} → ${t.dueAt}\nStatus: ${t.status}`}
+                        >
+                          {width > 8 ? t.title : ""}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {unscheduled.length > 0 && (
+        <div className="section" style={{ marginTop: 14 }}>
+          <h3>Chưa lên lịch ({unscheduled.length})</h3>
+          {unscheduled.map(t => (
+            <div key={t.id} className="due-row" onClick={() => onTaskClick?.(t)}>
+              <span className={`pri ${t.priority}`} />
+              <span className="title">{t.title}</span>
+              <span className={`badge area-${t.area}`}>{AREA_LABEL[t.area] || t.area}</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// =====================================================
+// GOALS VIEW
+// =====================================================
+function GoalsView({ goals, tasks, users, onOpenTask, onCreateGoal, onUpdateGoal, onDeleteGoal, currentUser }) {
+  const [expanded, setExpanded] = useState(null);
+  const perms = ROLE_PERMS[currentUser.role] || {};
+
+  const enriched = useMemo(() => goals.map(g => {
+    const its = tasks.filter(t => t.goalId === g.id);
+    const done = its.filter(t => t.status === "done").length;
+    return { ...g, _tasks: its, done, total: its.length, pct: its.length ? Math.round(done / its.length * 100) : 0 };
+  }).sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0)), [goals, tasks]);
+
+  return (
+    <div>
+      <div className="section-head">
+        <h3 style={{ margin: 0 }}>Mục tiêu của dự án</h3>
+        <button className="btn primary" onClick={onCreateGoal}>+ Tạo mục tiêu</button>
+      </div>
+
+      {enriched.length === 0 ? (
+        <Placeholder icon="◎" title="Chưa có mục tiêu" note="Bấm '+ Tạo mục tiêu' để thêm milestone đầu tiên." />
+      ) : (
+        <div className="goals-grid">
+          {enriched.map(g => (
+            <div key={g.id} className="goal-card">
+              <div className="gh">
+                <span className={`badge area-${g.area}`}>{AREA_LABEL[g.area] || g.area}</span>
+                {g.dueAt && <span style={{ marginLeft: "auto", fontSize: 12, color: isOverdue(g.dueAt) ? "var(--danger)" : "var(--text-muted)" }}>📅 {fmtDate(g.dueAt)}</span>}
+              </div>
+              <h3>{g.title}</h3>
+              {g.description && <div style={{ fontSize: 12, color: "var(--text-muted)", marginBottom: 6 }}>{g.description}</div>}
+              <div className="bar"><span style={{ width: g.pct + "%" }} /></div>
+              <div className="meta">
+                <span className="pct">{g.pct}%</span>
+                <span>· {g.done}/{g.total} task</span>
+                <button className="btn ghost sm" style={{ marginLeft: "auto" }} onClick={() => setExpanded(expanded === g.id ? null : g.id)}>
+                  {expanded === g.id ? "Ẩn" : "Xem"} task
+                </button>
+                {perms.canManageUsers && (
+                  <button className="btn ghost sm" onClick={() => { if (confirm(`Xoá goal "${g.title}"? Task con sẽ KHÔNG bị xoá nhưng sẽ mất liên kết.`)) onDeleteGoal(g.id); }}>🗑</button>
+                )}
+              </div>
+              {expanded === g.id && (
+                <div className="task-list">
+                  {g._tasks.length === 0 ? (
+                    <div style={{ fontSize: 12, color: "var(--text-faint)", padding: 8 }}>Chưa có task nào trong mục tiêu này.</div>
+                  ) : (
+                    g._tasks.map(t => (
+                      <div key={t.id} className="task-row" onClick={() => onOpenTask(t)}>
+                        <span className={`badge st-${t.status}`}>{t.status}</span>
+                        <span className={`ttl ${t.status === "done" ? "done" : ""}`}>{t.title}</span>
+                        {t.dueAt && <span style={{ fontSize: 11, color: "var(--text-muted)" }}>{fmtDate(t.dueAt)}</span>}
+                      </div>
+                    ))
+                  )}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// =====================================================
+// GOAL CREATE MODAL
+// =====================================================
+function GoalCreateModal({ projectId, currentUser, onClose, onCreate }) {
+  const [draft, setDraft] = useState({ title: "", description: "", area: currentUser.area, dueAt: null });
+  const update = (k, v) => setDraft(d => ({ ...d, [k]: v }));
+  const submit = () => {
+    if (!draft.title.trim()) return;
+    onCreate({
+      id: newId(), projectId,
+      title: draft.title.trim(), description: draft.description || null,
+      area: draft.area, dueAt: draft.dueAt || null,
+      status: "open", sortOrder: 0, createdBy: currentUser.id,
+    });
+    onClose();
+  };
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal" onClick={e => e.stopPropagation()} style={{ maxWidth: 480 }}>
+        <div className="modal-head"><div className="ttl">+ Mục tiêu mới</div><button className="close" onClick={onClose}>×</button></div>
+        <div className="modal-body">
+          <div className="field"><label>Tên mục tiêu *</label>
+            <input className="input" autoFocus value={draft.title} onChange={e => update("title", e.target.value)}
+              onKeyDown={e => { if (e.key === "Enter" && draft.title.trim()) submit(); }}
+              placeholder="VD: Mốc 1 — Hoàn thiện sản phẩm v1" />
+          </div>
+          <div className="field"><label>Mô tả</label>
+            <textarea className="textarea" value={draft.description} onChange={e => update("description", e.target.value)} placeholder="Ngữ cảnh, tiêu chí thành công…" />
+          </div>
+          <div className="meta-grid">
+            <div className="field"><label>Mảng</label>
+              <select className="select" value={draft.area} onChange={e => update("area", e.target.value)}>
+                {AREA_OPTS.map(a => <option key={a} value={a}>{AREA_LABEL[a]}</option>)}
+              </select>
+            </div>
+            <div className="field"><label>Deadline</label>
+              <input className="input" type="date" value={draft.dueAt || ""} onChange={e => update("dueAt", e.target.value || null)} />
+            </div>
+          </div>
+        </div>
+        <div className="modal-foot">
+          <button className="btn" onClick={onClose}>Huỷ</button>
+          <button className="btn primary" disabled={!draft.title.trim()} onClick={submit}>Tạo</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// =====================================================
+// SETTINGS
+// =====================================================
+function SettingsView({ users, setUsers, project, setProjects, currentUser, toast }) {
+  const [tab, setTab] = useState("users");
+  return (
+    <div>
+      <div className="tabs">
+        <button className={tab === "users" ? "on" : ""} onClick={() => setTab("users")}>Người dùng</button>
+        <button className={tab === "project" ? "on" : ""} onClick={() => setTab("project")}>Dự án</button>
+        <button className={tab === "about" ? "on" : ""} onClick={() => setTab("about")}>Giới thiệu</button>
+      </div>
+      {tab === "users"   && <SettingsUsers users={users} setUsers={setUsers} currentUser={currentUser} toast={toast} />}
+      {tab === "project" && <SettingsProject project={project} setProjects={setProjects} toast={toast} />}
+      {tab === "about"   && <SettingsAbout />}
+    </div>
+  );
+}
+
+function SettingsUsers({ users, setUsers, currentUser, toast }) {
+  const update = (id, key, value) => setUsers(arr => arr.map(u => u.id === id ? { ...u, [key]: value } : u));
+  const remove = (id) => {
+    if (id === currentUser.id) { toast("Không thể xoá chính mình", "warn"); return; }
+    if (!confirm("Vô hiệu hoá user này? Task của họ sẽ giữ nguyên nhưng họ không đăng nhập được.")) return;
+    update(id, "isActive", false);
+    toast("Đã vô hiệu hoá user", "warn");
+  };
+  const add = () => {
+    const pin = prompt("PIN 4 số (1000–9999):");
+    if (!pin || !/^\d{4}$/.test(pin)) { toast("PIN phải là 4 chữ số", "error"); return; }
+    if (users.some(u => u.pin === pin)) { toast("PIN đã tồn tại", "error"); return; }
+    const name = prompt("Tên đầy đủ:");
+    if (!name) return;
+    setUsers(arr => [...arr, {
+      id: newId(), pin, fullName: name.trim(), role: "sub_ops",
+      area: "ops", color: COLOR_SWATCHES[arr.length % COLOR_SWATCHES.length], isActive: true,
+    }]);
+    toast("Đã thêm user. Đổi role/mảng/màu trong bảng dưới.", "success");
+  };
+  return (
+    <div className="section">
+      <div className="section-head"><h3>Quản lý người dùng</h3><button className="btn primary sm" onClick={add}>+ Thêm user</button></div>
+      <table className="user-table">
+        <thead>
+          <tr>
+            <th>Màu</th><th>PIN</th><th>Tên</th><th>Role</th><th>Mảng</th><th>Trạng thái</th><th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map(u => (
+            <tr key={u.id}>
+              <td>
+                <select value={u.color} onChange={e => update(u.id, "color", e.target.value)} style={{ background: u.color, color: "white", border: "none", borderRadius: 999, width: 50, padding: 4, fontSize: 11 }}>
+                  {COLOR_SWATCHES.map(c => <option key={c} value={c} style={{ background: c }}>●</option>)}
+                </select>
+              </td>
+              <td><input value={u.pin} onChange={e => update(u.id, "pin", e.target.value.replace(/\D/g, "").slice(0, 4))} style={{ width: 60 }} /></td>
+              <td><input value={u.fullName} onChange={e => update(u.id, "fullName", e.target.value)} /></td>
+              <td>
+                <select value={u.role} onChange={e => update(u.id, "role", e.target.value)}>
+                  {ROLE_OPTS.map(r => <option key={r} value={r}>{r}</option>)}
+                </select>
+              </td>
+              <td>
+                <select value={u.area} onChange={e => update(u.id, "area", e.target.value)}>
+                  {AREA_OPTS.map(a => <option key={a} value={a}>{AREA_LABEL[a]}</option>)}
+                </select>
+              </td>
+              <td>
+                <button className="btn sm" onClick={() => update(u.id, "isActive", !u.isActive)} style={{ color: u.isActive ? "var(--success)" : "var(--text-faint)" }}>
+                  {u.isActive ? "✓ Active" : "○ Tắt"}
+                </button>
+              </td>
+              <td>
+                {u.id !== currentUser.id && <button className="btn ghost sm" onClick={() => remove(u.id)} title="Vô hiệu hoá">🗑</button>}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <div style={{ fontSize: 11, color: "var(--text-muted)", marginTop: 10 }}>
+        Chỉnh sửa lưu tự động về Supabase. PIN đổi → user sẽ phải đăng nhập lại.
+      </div>
+    </div>
+  );
+}
+
+function SettingsProject({ project, setProjects, toast }) {
+  const [draft, setDraft] = useState(project);
+  useEffect(() => { setDraft(project); }, [project]);
+  if (!project) return <div className="section">Chưa có dự án nào.</div>;
+  const save = () => {
+    setProjects(arr => arr.map(p => p.id === draft.id ? draft : p));
+    toast("Đã lưu thông tin dự án", "success");
+  };
+  return (
+    <div className="section">
+      <h3 style={{ marginBottom: 14 }}>Thông tin dự án</h3>
+      <div className="field"><label>Tên dự án</label>
+        <input className="input" value={draft.name} onChange={e => setDraft({ ...draft, name: e.target.value })} />
+      </div>
+      <div className="field"><label>Mô tả</label>
+        <textarea className="textarea" value={draft.description || ""} onChange={e => setDraft({ ...draft, description: e.target.value })} />
+      </div>
+      <div className="meta-grid">
+        <div className="field"><label>Bắt đầu</label>
+          <input className="input" type="date" value={draft.startAt || ""} onChange={e => setDraft({ ...draft, startAt: e.target.value || null })} />
+        </div>
+        <div className="field"><label>Kết thúc</label>
+          <input className="input" type="date" value={draft.endAt || ""} onChange={e => setDraft({ ...draft, endAt: e.target.value || null })} />
+        </div>
+      </div>
+      <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <button className="btn primary" onClick={save}>Lưu</button>
+      </div>
+    </div>
+  );
+}
+
+function SettingsAbout() {
+  return (
+    <div className="section">
+      <h3 style={{ marginBottom: 14 }}>Giới thiệu</h3>
+      <table style={{ fontSize: 13, width: "100%" }}>
+        <tbody>
+          <tr><td style={{ color: "var(--text-muted)", padding: 6, width: 160 }}>Phiên bản</td><td><b>v{VERSION}</b></td></tr>
+          <tr><td style={{ color: "var(--text-muted)", padding: 6 }}>Kiến trúc</td><td>Single-file React (CDN) + Supabase + GitHub Pages</td></tr>
+          <tr><td style={{ color: "var(--text-muted)", padding: 6 }}>Repo</td><td><a href="https://github.com/nant37ftu/MHX2026" target="_blank" rel="noreferrer">github.com/nant37ftu/MHX2026</a></td></tr>
+          <tr><td style={{ color: "var(--text-muted)", padding: 6 }}>Supabase</td><td>{SUPABASE_URL}</td></tr>
+        </tbody>
+      </table>
+      <div style={{ marginTop: 14, fontSize: 12, color: "var(--text-muted)" }}>
+        Internal tool — vui lòng không công khai URL/key trên public site.
+      </div>
+    </div>
+  );
+}
+
+// =====================================================
+// TASK DETAIL MODAL — with activity log + comment
+// =====================================================
+function TaskDetailModal({ task, users, goals, activities, currentUser, onClose, onSave, onDelete, onComment }) {
+  const [draft, setDraft] = useState(task);
+  const [comment, setComment] = useState("");
+  useEffect(() => { setDraft(task); }, [task]);
   const perms = ROLE_PERMS[currentUser.role] || {};
   const canDelete = perms.canDeleteAnyTask || task.createdBy === currentUser.id;
+  const userById = useMemo(() => Object.fromEntries(users.map(u => [u.id, u])), [users]);
+
+  const taskActs = useMemo(() => activities
+    .filter(a => a.taskId === task.id)
+    .sort((a, b) => (a.createdAt || "").localeCompare(b.createdAt || "")),
+  [activities, task.id]);
 
   const update = (k, v) => setDraft(d => ({ ...d, [k]: v }));
-
   const save = () => {
     const next = { ...draft };
     if (next.status === "done" && !next.doneAt) next.doneAt = new Date().toISOString();
     if (next.status !== "done") next.doneAt = null;
-    onSave(next);
+    onSave(next, task);
     onClose();
   };
-
   const del = () => {
     if (!confirm(`Xoá task "${task.title}"? Không thể hoàn tác.`)) return;
-    onDelete(task.id);
-    onClose();
+    onDelete(task.id); onClose();
+  };
+  const submitComment = () => {
+    const text = comment.trim();
+    if (!text) return;
+    onComment(task.id, text);
+    setComment("");
+  };
+
+  const renderActivityText = (a) => {
+    const u = userById[a.userId];
+    const who = u?.fullName || "Ai đó";
+    if (a.kind === "comment") return null;
+    if (a.kind === "created") return `${who} đã tạo task này`;
+    if (a.kind === "status_change") return `${who} chuyển trạng thái ${a.payload.from || "?"} → ${a.payload.to || "?"}`;
+    if (a.kind === "assigned") {
+      const to = a.payload.toName || userById[a.payload.to]?.fullName || "Chưa gán";
+      return `${who} đã gán cho ${to}`;
+    }
+    if (a.kind === "edited") return `${who} đã sửa ${a.payload.field || "task"}`;
+    return `${who} · ${a.kind}`;
   };
 
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal" onClick={e => e.stopPropagation()}>
         <div className="modal-head">
-          <input
-            className="title-edit"
-            value={draft.title}
-            onChange={e => update("title", e.target.value)}
-            placeholder="Tên task"
-          />
+          <input className="title-edit" value={draft.title} onChange={e => update("title", e.target.value)} placeholder="Tên task" />
           <button className="close" onClick={onClose}>×</button>
         </div>
         <div className="modal-body">
           <div className="meta-grid">
-            <div className="field">
-              <label>Trạng thái</label>
+            <div className="field"><label>Trạng thái</label>
               <select className="select" value={draft.status} onChange={e => update("status", e.target.value)}>
                 {STATUS_COLS.map(c => <option key={c.k} value={c.k}>{c.label}</option>)}
               </select>
             </div>
-            <div className="field">
-              <label>Ưu tiên</label>
+            <div className="field"><label>Ưu tiên</label>
               <select className="select" value={draft.priority} onChange={e => update("priority", e.target.value)}>
                 {PRIORITY_OPTS.map(p => <option key={p} value={p}>{p}</option>)}
               </select>
             </div>
-            <div className="field">
-              <label>Mảng</label>
+            <div className="field"><label>Mảng</label>
               <select className="select" value={draft.area} onChange={e => update("area", e.target.value)}>
-                {Object.entries(AREA_LABEL).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
+                {AREA_OPTS.map(a => <option key={a} value={a}>{AREA_LABEL[a]}</option>)}
               </select>
             </div>
-            <div className="field">
-              <label>Người phụ trách</label>
+            <div className="field"><label>Người phụ trách</label>
               <select className="select" value={draft.assigneeId || ""} onChange={e => update("assigneeId", e.target.value || null)}>
                 <option value="">— Chưa gán —</option>
                 {users.filter(u => u.isActive).map(u => <option key={u.id} value={u.id}>{u.fullName}</option>)}
               </select>
             </div>
-            <div className="field">
-              <label>Bắt đầu</label>
+            <div className="field"><label>Bắt đầu</label>
               <input className="input" type="date" value={draft.startAt || ""} onChange={e => update("startAt", e.target.value || null)} />
             </div>
-            <div className="field">
-              <label>Deadline</label>
+            <div className="field"><label>Deadline</label>
               <input className="input" type="date" value={draft.dueAt || ""} onChange={e => update("dueAt", e.target.value || null)} />
             </div>
-            <div className="field" style={{ gridColumn: "1 / -1" }}>
-              <label>Mục tiêu</label>
+            <div className="field" style={{ gridColumn: "1 / -1" }}><label>Mục tiêu</label>
               <select className="select" value={draft.goalId || ""} onChange={e => update("goalId", e.target.value || null)}>
                 <option value="">— Không liên kết —</option>
                 {goals.map(g => <option key={g.id} value={g.id}>{g.title}</option>)}
               </select>
             </div>
           </div>
-
           <div className="field">
             <label>Mô tả</label>
-            <textarea
-              className="textarea"
-              value={draft.description || ""}
-              onChange={e => update("description", e.target.value)}
-              placeholder="Mô tả task, link tài liệu, ghi chú… (Markdown sẽ hỗ trợ ở Phase 2)"
-            />
+            <textarea className="textarea" value={draft.description || ""} onChange={e => update("description", e.target.value)} placeholder="Mô tả, link tài liệu, ghi chú…" />
+          </div>
+
+          <div className="activity-section">
+            <h4>Lịch sử & bình luận</h4>
+            <div className="activity-list">
+              {taskActs.length === 0 ? (
+                <div style={{ fontSize: 12, color: "var(--text-faint)" }}>Chưa có hoạt động nào.</div>
+              ) : taskActs.map(a => {
+                const u = userById[a.userId];
+                const isSystem = a.kind !== "comment";
+                return (
+                  <div key={a.id} className={`activity-item ${isSystem ? "system" : ""}`}>
+                    <span className="av" style={{ background: u?.color || "#94A3B8" }}>{initials(u?.fullName)}</span>
+                    <div className="body">
+                      {isSystem ? (
+                        <div className="text">
+                          {renderActivityText(a)}
+                          <span className="when">{fmtRelative(a.createdAt)}</span>
+                        </div>
+                      ) : (
+                        <>
+                          <span className="who">{u?.fullName || "Ai đó"}</span>
+                          <span className="when">{fmtRelative(a.createdAt)}</span>
+                          <div className="text">{a.payload.text}</div>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="comment-input">
+              <textarea
+                value={comment} onChange={e => setComment(e.target.value)}
+                onKeyDown={e => { if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) { e.preventDefault(); submitComment(); } }}
+                placeholder="Viết bình luận… (Ctrl+Enter để gửi)"
+              />
+              <button className="btn primary sm" disabled={!comment.trim()} onClick={submitComment}>Gửi</button>
+            </div>
           </div>
         </div>
         <div className="modal-foot">
@@ -1067,92 +1504,63 @@ function TaskDetailModal({ task, users, goals, currentUser, onClose, onSave, onD
 // =====================================================
 // QUICK CREATE TASK MODAL
 // =====================================================
-function QuickCreateModal({ users, goals, currentUser, projectId, initialStatus, onClose, onCreate }) {
+function QuickCreateModal({ users, goals, currentUser, projectId, initialStatus, initialGoalId, onClose, onCreate }) {
   const [draft, setDraft] = useState({
-    title: "",
-    status: initialStatus || "todo",
-    priority: "normal",
-    area: currentUser.area,
-    assigneeId: currentUser.id,
-    goalId: null,
-    dueAt: null,
+    title: "", status: initialStatus || "todo", priority: "normal",
+    area: currentUser.area, assigneeId: currentUser.id,
+    goalId: initialGoalId || null, dueAt: null,
   });
   const update = (k, v) => setDraft(d => ({ ...d, [k]: v }));
-
   const submit = () => {
     if (!draft.title.trim()) return;
-    const t = {
-      id: newId(),
-      projectId,
+    onCreate({
+      id: newId(), projectId,
       goalId: draft.goalId || null,
-      title: draft.title.trim(),
-      description: "",
-      status: draft.status,
-      priority: draft.priority,
-      area: draft.area,
-      assigneeId: draft.assigneeId || null,
-      createdBy: currentUser.id,
-      startAt: null,
-      dueAt: draft.dueAt || null,
+      title: draft.title.trim(), description: "",
+      status: draft.status, priority: draft.priority, area: draft.area,
+      assigneeId: draft.assigneeId || null, createdBy: currentUser.id,
+      startAt: null, dueAt: draft.dueAt || null,
       doneAt: draft.status === "done" ? new Date().toISOString() : null,
-      checklist: [],
-      tags: [],
-      sortOrder: 0,
-    };
-    onCreate(t);
+      checklist: [], tags: [], sortOrder: 0,
+    });
     onClose();
   };
-
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal" onClick={e => e.stopPropagation()} style={{ maxWidth: 480 }}>
-        <div className="modal-head">
-          <div className="ttl">+ Task mới</div>
-          <button className="close" onClick={onClose}>×</button>
-        </div>
+        <div className="modal-head"><div className="ttl">+ Task mới</div><button className="close" onClick={onClose}>×</button></div>
         <div className="modal-body">
-          <div className="field">
-            <label>Tên task *</label>
-            <input
-              className="input" autoFocus
-              value={draft.title}
-              onChange={e => update("title", e.target.value)}
+          <div className="field"><label>Tên task *</label>
+            <input className="input" autoFocus value={draft.title} onChange={e => update("title", e.target.value)}
               onKeyDown={e => { if (e.key === "Enter" && draft.title.trim()) submit(); }}
-              placeholder="VD: Viết outline tài liệu onboarding"
-            />
+              placeholder="VD: Viết outline tài liệu onboarding" />
           </div>
           <div className="meta-grid">
-            <div className="field">
-              <label>Trạng thái</label>
+            <div className="field"><label>Trạng thái</label>
               <select className="select" value={draft.status} onChange={e => update("status", e.target.value)}>
                 {STATUS_COLS.map(c => <option key={c.k} value={c.k}>{c.label}</option>)}
               </select>
             </div>
-            <div className="field">
-              <label>Ưu tiên</label>
+            <div className="field"><label>Ưu tiên</label>
               <select className="select" value={draft.priority} onChange={e => update("priority", e.target.value)}>
                 {PRIORITY_OPTS.map(p => <option key={p} value={p}>{p}</option>)}
               </select>
             </div>
-            <div className="field">
-              <label>Mảng</label>
+            <div className="field"><label>Mảng</label>
               <select className="select" value={draft.area} onChange={e => update("area", e.target.value)}>
-                {Object.entries(AREA_LABEL).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
+                {AREA_OPTS.map(a => <option key={a} value={a}>{AREA_LABEL[a]}</option>)}
               </select>
             </div>
-            <div className="field">
-              <label>Người phụ trách</label>
+            <div className="field"><label>Người phụ trách</label>
               <select className="select" value={draft.assigneeId || ""} onChange={e => update("assigneeId", e.target.value || null)}>
                 <option value="">— Chưa gán —</option>
                 {users.filter(u => u.isActive).map(u => <option key={u.id} value={u.id}>{u.fullName}</option>)}
               </select>
             </div>
-            <div className="field">
-              <label>Deadline</label>
+            <div className="field"><label>Deadline</label>
               <input className="input" type="date" value={draft.dueAt || ""} onChange={e => update("dueAt", e.target.value || null)} />
             </div>
-            <div className="field">
-              <label>Mục tiêu</label>
+            <div className="field"><label>Mục tiêu</label>
               <select className="select" value={draft.goalId || ""} onChange={e => update("goalId", e.target.value || null)}>
                 <option value="">— Không liên kết —</option>
                 {goals.map(g => <option key={g.id} value={g.id}>{g.title}</option>)}
@@ -1170,14 +1578,19 @@ function QuickCreateModal({ users, goals, currentUser, projectId, initialStatus,
 }
 
 // =====================================================
-// PLACEHOLDER
+// PLACEHOLDER + TOAST
 // =====================================================
 function Placeholder({ icon, title, note }) {
   return (
     <div className="placeholder">
-      <div className="ic">{icon}</div>
-      <div className="ttl">{title}</div>
-      <div className="sub">{note}</div>
+      <div className="ic">{icon}</div><div className="ttl">{title}</div><div className="sub">{note}</div>
+    </div>
+  );
+}
+function ToastStack({ toasts }) {
+  return (
+    <div className="toast-stack">
+      {toasts.map(t => <div key={t.id} className={`toast ${t.type}`}>{t.msg}</div>)}
     </div>
   );
 }
@@ -1191,25 +1604,27 @@ function App() {
   useEffect(() => { toastRef.current = toast; }, [toast]);
   const onSyncError = useCallback((msg) => toastRef.current?.(msg, "error"), []);
 
-  const [users,    setUsers,    usersMeta]    = useStateSync("users",    userFromDb,    userToDb,    onSyncError);
-  const [projects, setProjects, projectsMeta] = useStateSync("projects", projectFromDb, projectToDb, onSyncError);
-  const [goals,    setGoals,    goalsMeta]    = useStateSync("goals",    goalFromDb,    goalToDb,    onSyncError);
-  const [tasks,    setTasks,    tasksMeta]    = useStateSync("tasks",    taskFromDb,    taskToDb,    onSyncError);
+  const [users,      setUsers,      usersMeta]      = useStateSync("users",      userFromDb,     userToDb,     onSyncError);
+  const [projects,   setProjects,   projectsMeta]   = useStateSync("projects",   projectFromDb,  projectToDb,  onSyncError);
+  const [goals,      setGoals,      goalsMeta]      = useStateSync("goals",      goalFromDb,     goalToDb,     onSyncError);
+  const [tasks,      setTasks,      tasksMeta]      = useStateSync("tasks",      taskFromDb,     taskToDb,     onSyncError);
+  const [activities, setActivities, activitiesMeta] = useStateSync("activities", activityFromDb, activityToDb, onSyncError);
 
   const loading = usersMeta.loading || projectsMeta.loading || goalsMeta.loading || tasksMeta.loading;
   const fatalError = usersMeta.error || projectsMeta.error || goalsMeta.error || tasksMeta.error;
 
   const [currentUser, setCurrentUser] = useState(null);
-  const [screen, setScreen]   = useState("dashboard");
-  const [sbOpen, setSbOpen]   = useState(false);
-  const [connStatus]          = useState(SUPABASE_READY ? "live" : "mock");
+  const [screen,    setScreen]    = useState("dashboard");
+  const [sbOpen,    setSbOpen]    = useState(false);
+  const [connStatus, setConnStatus] = useState(SUPABASE_READY ? "connecting" : "mock");
 
-  const [openTask, setOpenTask] = useState(null);   // task object for detail modal
-  const [quickAdd, setQuickAdd] = useState(null);   // null | { status }
+  const [openTask,  setOpenTask]  = useState(null);
+  const [quickAdd,  setQuickAdd]  = useState(null);
+  const [goalAdd,   setGoalAdd]   = useState(false);
 
   const project = projects[0] || null;
 
-  // Auto-login từ localStorage sau khi users load xong
+  // Auto-login
   useEffect(() => {
     if (usersMeta.loading) return;
     const savedPin = localStorage.getItem("leadhub_pin");
@@ -1219,48 +1634,90 @@ function App() {
     else localStorage.removeItem("leadhub_pin");
   }, [usersMeta.loading, users]);
 
+  // Realtime channel — subscribe 4 tables after user logs in
+  useEffect(() => {
+    if (!currentUser || !sb) return;
+    setConnStatus("connecting");
+    let timer = null;
+    const ch = sb.channel("leadhub-main")
+      .on("postgres_changes", { event: "*", schema: "public", table: "tasks" },      p => tasksMeta.applyRemote(p))
+      .on("postgres_changes", { event: "*", schema: "public", table: "goals" },      p => goalsMeta.applyRemote(p))
+      .on("postgres_changes", { event: "*", schema: "public", table: "users" },      p => usersMeta.applyRemote(p))
+      .on("postgres_changes", { event: "*", schema: "public", table: "activities" }, p => activitiesMeta.applyRemote(p))
+      .subscribe(status => {
+        if (status === "SUBSCRIBED")    setConnStatus("live");
+        else if (status === "CHANNEL_ERROR" || status === "CLOSED") {
+          setConnStatus("offline");
+          if (timer) clearTimeout(timer);
+          timer = setTimeout(() => { try { ch.subscribe(); setConnStatus("connecting"); } catch {} }, 5000);
+        }
+      });
+    return () => {
+      if (timer) clearTimeout(timer);
+      try { sb.removeChannel(ch); } catch {}
+    };
+  }, [currentUser, tasksMeta.applyRemote, goalsMeta.applyRemote, usersMeta.applyRemote, activitiesMeta.applyRemote]);
+
   const logout = () => {
     localStorage.removeItem("leadhub_pin");
-    setCurrentUser(null);
-    setScreen("dashboard");
+    setCurrentUser(null); setScreen("dashboard");
   };
-
   const retryFetch = () => { window.location.reload(); };
 
-  // --------- TASK MUTATIONS ----------
+  // ----- ACTIVITY HELPER -----
+  const logActivity = useCallback((taskId, kind, payload = {}) => {
+    if (!currentUser) return;
+    setActivities(arr => [...arr, {
+      id: newId(), taskId, userId: currentUser.id,
+      kind, payload, createdAt: new Date().toISOString(),
+    }]);
+  }, [currentUser, setActivities]);
+
+  // ----- TASK MUTATIONS -----
   const createTask = (t) => {
     setTasks(arr => [...arr, t]);
+    logActivity(t.id, "created");
     toast("Đã tạo task", "success");
   };
-  const updateTask = (next) => {
+  const updateTask = (next, original) => {
     setTasks(arr => arr.map(t => t.id === next.id ? { ...next, updatedAt: new Date().toISOString() } : t));
+    if (original && original.status !== next.status) logActivity(next.id, "status_change", { from: original.status, to: next.status });
+    if (original && original.assigneeId !== next.assigneeId) {
+      const to = users.find(u => u.id === next.assigneeId);
+      logActivity(next.id, "assigned", { to: next.assigneeId, toName: to?.fullName || "Chưa gán" });
+    }
+    if (original && original.title !== next.title)             logActivity(next.id, "edited", { field: "title" });
+    if (original && original.description !== next.description) logActivity(next.id, "edited", { field: "mô tả" });
     toast("Đã lưu task", "success");
   };
   const deleteTask = (id) => {
     setTasks(arr => arr.filter(t => t.id !== id));
     toast("Đã xoá task", "warn");
   };
+  const commentTask = (taskId, text) => logActivity(taskId, "comment", { text });
 
-  // ---------- LOGIN GATE ----------
+  // ----- GOAL MUTATIONS -----
+  const createGoal = (g) => { setGoals(arr => [...arr, g]); toast("Đã tạo mục tiêu", "success"); };
+  const deleteGoal = (id) => {
+    setGoals(arr => arr.filter(g => g.id !== id));
+    setTasks(arr => arr.map(t => t.goalId === id ? { ...t, goalId: null } : t));
+    toast("Đã xoá mục tiêu", "warn");
+  };
+
+  // ----- LOGIN GATE -----
   if (!currentUser) {
     return (
       <>
-        <LoginScreen
-          users={users}
-          loading={usersMeta.loading}
-          error={usersMeta.error}
-          onLogin={setCurrentUser}
-          toast={toast}
-          onRetry={retryFetch}
-        />
+        <LoginScreen users={users} loading={usersMeta.loading} error={usersMeta.error} onLogin={setCurrentUser} toast={toast} onRetry={retryFetch} />
         <ToastStack toasts={toasts} />
       </>
     );
   }
 
-  // ---------- MAIN APP ----------
+  // ----- MAIN APP -----
   const myTasks = tasks.filter(t => t.assigneeId === currentUser.id);
   const screenTitle = NAV_ITEMS.find(n => n.k === screen)?.label || "LeadHub";
+  const perms = ROLE_PERMS[currentUser.role] || {};
 
   let body;
   if (loading) {
@@ -1268,8 +1725,7 @@ function App() {
   } else if (fatalError) {
     body = (
       <div className="error-banner">
-        <b>Lỗi tải dữ liệu</b>
-        {fatalError.message || String(fatalError)}
+        <b>Lỗi tải dữ liệu</b>{fatalError.message || String(fatalError)}
         <div style={{ marginTop: 8 }}><button className="btn sm" onClick={retryFetch}>Tải lại</button></div>
       </div>
     );
@@ -1278,29 +1734,18 @@ function App() {
       case "dashboard":
         body = <Dashboard tasks={tasks} goals={goals} onOpenTask={setOpenTask} />; break;
       case "kanban":
-        body = (
-          <Kanban
-            tasks={tasks} users={users}
-            onCardClick={setOpenTask}
-            onAddInCol={(status) => setQuickAdd({ status })}
-            emptyMsg="Bấm '+ Task' để tạo task đầu tiên."
-          />
-        ); break;
+        body = <Kanban tasks={tasks} users={users} onCardClick={setOpenTask} onAddInCol={(s) => setQuickAdd({ status: s })} emptyMsg="Bấm '+ Task' để tạo task đầu tiên." />; break;
       case "timeline":
-        body = <Placeholder icon="═" title="Timeline — Coming Phase 2" note="Gantt-lite ngang theo start_at → due_at, group theo mảng hoặc assignee." />; break;
+        body = <Timeline tasks={tasks} users={users} onTaskClick={setOpenTask} />; break;
       case "goals":
-        body = <Placeholder icon="◎" title="Mục tiêu — Coming Phase 2" note="List goals + progress bar tự tính từ task con, expand task con inline." />; break;
+        body = <GoalsView goals={goals} tasks={tasks} users={users} onOpenTask={setOpenTask} onCreateGoal={() => setGoalAdd(true)} onUpdateGoal={(g) => setGoals(arr => arr.map(x => x.id === g.id ? g : x))} onDeleteGoal={deleteGoal} currentUser={currentUser} />; break;
       case "mytasks":
-        body = (
-          <Kanban
-            tasks={myTasks} users={users}
-            onCardClick={setOpenTask}
-            onAddInCol={(status) => setQuickAdd({ status })}
-            emptyMsg="Bạn chưa được gán task nào. Bấm '+ Task' để tự tạo."
-          />
-        ); break;
+        body = <Kanban tasks={myTasks} users={users} onCardClick={setOpenTask} onAddInCol={(s) => setQuickAdd({ status: s })} emptyMsg="Bạn chưa được gán task nào. Bấm '+ Task' để tự tạo." />; break;
       case "settings":
-        body = <Placeholder icon="⚙" title="Cài đặt — Coming Phase 2" note="Tabs Users / Project / About. Chỉ lead_pm thấy." />; break;
+        body = perms.canManageUsers
+          ? <SettingsView users={users} setUsers={setUsers} project={project} setProjects={setProjects} currentUser={currentUser} toast={toast} />
+          : <Placeholder icon="🔒" title="Không có quyền" note="Chỉ lead_pm mới truy cập được Cài đặt." />;
+        break;
       default:
         body = <Placeholder icon="?" title="Không tìm thấy" note="Màn hình không hợp lệ." />;
     }
@@ -1309,58 +1754,32 @@ function App() {
   return (
     <>
       <div className="app-shell">
-        <Sidebar
-          open={sbOpen} onClose={() => setSbOpen(false)}
-          screen={screen} setScreen={setScreen}
-          currentUser={currentUser} projectName={project?.name}
-          onLogout={logout} connStatus={connStatus}
-        />
+        <Sidebar open={sbOpen} onClose={() => setSbOpen(false)} screen={screen} setScreen={setScreen}
+          currentUser={currentUser} projectName={project?.name} onLogout={logout} connStatus={connStatus} />
         <main className="app-main">
-          <TopBar
-            title={screenTitle}
-            onMenu={() => setSbOpen(true)}
-            onQuickAdd={() => setQuickAdd({ status: "todo" })}
-          />
+          <TopBar title={screenTitle} onMenu={() => setSbOpen(true)} onQuickAdd={() => setQuickAdd({ status: "todo" })} />
           <div className="content">{body}</div>
         </main>
       </div>
 
       {openTask && (
         <TaskDetailModal
-          task={openTask}
-          users={users}
-          goals={goals}
-          currentUser={currentUser}
-          onClose={() => setOpenTask(null)}
-          onSave={updateTask}
-          onDelete={deleteTask}
+          task={openTask} users={users} goals={goals} activities={activities} currentUser={currentUser}
+          onClose={() => setOpenTask(null)} onSave={updateTask} onDelete={deleteTask} onComment={commentTask}
         />
       )}
-
       {quickAdd && project && (
-        <QuickCreateModal
-          users={users}
-          goals={goals}
-          currentUser={currentUser}
-          projectId={project.id}
-          initialStatus={quickAdd.status}
-          onClose={() => setQuickAdd(null)}
-          onCreate={createTask}
-        />
+        <QuickCreateModal users={users} goals={goals} currentUser={currentUser}
+          projectId={project.id} initialStatus={quickAdd.status} initialGoalId={quickAdd.goalId}
+          onClose={() => setQuickAdd(null)} onCreate={createTask} />
+      )}
+      {goalAdd && project && (
+        <GoalCreateModal projectId={project.id} currentUser={currentUser}
+          onClose={() => setGoalAdd(false)} onCreate={createGoal} />
       )}
 
       <ToastStack toasts={toasts} />
     </>
-  );
-}
-
-function ToastStack({ toasts }) {
-  return (
-    <div className="toast-stack">
-      {toasts.map(t => (
-        <div key={t.id} className={`toast ${t.type}`}>{t.msg}</div>
-      ))}
-    </div>
   );
 }
 

@@ -2,6 +2,37 @@
 
 Tất cả thay đổi đáng chú ý của LeadHub. Format theo [Keep a Changelog](https://keepachangelog.com), versioning theo [SemVer](https://semver.org/).
 
+## [1.0.0] — 2026-05-13
+
+### Added
+- **Realtime channel** subscribe 4 bảng (`tasks`, `goals`, `users`, `activities`). Khi user A update task, các tab khác cập nhật <1s không cần F5. Auto-reconnect sau 5s nếu mất kết nối.
+- **`useStateSync.applyRemote`** — function thứ 3 trả về từ hook, bypass DB sync khi nhận payload realtime, dedupe bằng JSON.stringify để tránh re-render loop khi server echo lại update của chính mình.
+- **Connection indicator động:** 🟡 connecting → 🟢 live khi `SUBSCRIBED` → 🔴 offline khi `CHANNEL_ERROR`/`CLOSED` + auto retry.
+- **Timeline (Gantt-lite):** thanh ngang start_at → due_at, zoom Tuần (14 ngày) / Tháng (60 ngày), group theo Mảng hoặc Người, today line màu đỏ, hover bar → tooltip, click → mở Task Detail. Task không có start/due hiển thị riêng ở "Chưa lên lịch".
+- **Goals view:** card grid responsive, progress bar tự tính `count(done)/count(total)`, expand inline để xem task con, badge area, due date đỏ nếu quá hạn, nút xoá cho lead_pm.
+- **Goal Create Modal:** title, mô tả, area, due_at.
+- **Settings** với 3 tabs (chỉ `lead_pm` truy cập):
+  - **Người dùng:** bảng inline-edit PIN/name/role/area/color/active, nút "+ Thêm user" prompt PIN+name, sync tự động Supabase.
+  - **Dự án:** form edit name/description/start_at/end_at với nút Lưu.
+  - **Giới thiệu:** version, link repo, link Supabase.
+- **Activity log + comment** trong Task Detail Modal:
+  - Auto-log khi tạo task (`created`), đổi status (`status_change` với from/to), đổi assignee (`assigned`), sửa title/description (`edited`).
+  - Section "Lịch sử & bình luận" hiển thị timeline activities theo thứ tự thời gian, avatar + tên user + relative time (vừa xong / X phút trước / X giờ trước).
+  - Comment input textarea, Ctrl+Enter để gửi nhanh.
+- Badge mới cho status (`backlog`/`todo`/`doing`/`review`/`done`) dùng trong Goals view.
+- Helper `fmtRelative()` cho timestamp trong activity log.
+
+### Changed
+- Bump `VERSION` 0.5.0 → 1.0.0.
+- 5 tables sync (thêm `activities`).
+- `useStateSync` return shape: `[data, setData, { loading, error, applyRemote }]` (thêm `applyRemote`).
+- `TaskDetailModal` nhận thêm props `activities` + `onComment`. `onSave(next, original)` truyền cả original để diff log activity.
+
+### Migration
+- Không cần migration DB — schema Phase 0 đã có sẵn `activities` + realtime publication cho 4 bảng.
+
+---
+
 ## [0.5.0] — 2026-05-13
 
 ### Added
