@@ -2,6 +2,35 @@
 
 Tất cả thay đổi đáng chú ý của LeadHub. Format theo [Keep a Changelog](https://keepachangelog.com), versioning theo [SemVer](https://semver.org/).
 
+## [0.5.0] — 2026-05-13
+
+### Added
+- Wire Supabase: paste credentials thật vào `index.html` (URL + publishable key).
+- 5 cặp mapper `fromDb` / `toDb` cho `users`, `projects`, `goals`, `tasks`, `activities` (DB snake_case ↔ JS camelCase).
+- Custom hook `useStateSync(table, fromDb, toDb)` — diff-wrapper auto-sync theo PLAYBOOK 5.2. Trả về `[data, setData, { loading, error }]`. Setter tự diff prev/next rồi gọi `sb.from(table).upsert/delete()` từng row đã đổi. Component dùng như `setState` bình thường, không biết đến DB.
+- Login PIN fetch users thật từ Supabase, không còn mock. Loading spinner trong khi fetch. Error banner + nút "Thử lại" nếu fetch fail (chưa chạy schema / sai key / mất mạng).
+- Auto-login từ `localStorage` chạy sau khi users load xong.
+- **Task Detail Modal:** inline-edit title + dropdown status/priority/area/assignee/goal + date picker start_at/due_at + textarea description. Tự set `done_at` khi chuyển status sang `done`, clear khi out khỏi `done`. Nút Xoá hiện cho `lead_pm` hoặc người tạo.
+- **Quick Create Modal** (+ Task button trên TopBar và nút + trong Kanban column): tạo task mới với title/status/priority/area/assignee/due/goal. Mặc định area = mảng của user, assignee = chính user.
+- Dashboard, Kanban, My Tasks render từ data Supabase. Click bất kỳ task nào → mở Task Detail Modal.
+- 3 states đầy đủ: Loading (spinner) / Empty (placeholder + CTA) / Error (banner + retry).
+- Connection indicator: 🟢 Live khi Supabase wired, 🟤 Local khi không có credentials.
+
+### Changed
+- Bump `VERSION` 0.1.0 → 0.5.0.
+- Xoá mock data hardcoded; mọi state đến từ Supabase qua `useStateSync`.
+
+### Migration
+- Trước khi chạy: vào Supabase SQL Editor → paste `supabase-schema.sql` → Run (idempotent, chạy lại không reset data).
+- Nếu fork repo này, thay `SUPABASE_URL` + `SUPABASE_KEY` trong `index.html`.
+
+### Known limitations (sẽ fix ở Phase 2)
+- Chưa có realtime — phải F5 để thấy update của user khác.
+- Activity log + comment chưa làm.
+- Timeline / Goals / Settings vẫn placeholder.
+
+---
+
 ## [0.1.0] — 2026-05-13
 
 ### Added

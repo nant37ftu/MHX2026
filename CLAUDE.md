@@ -64,14 +64,21 @@ Role là `text` trong DB (không enum) — rename/thêm role không cần migrat
 
 ## Phase tracker
 - ✅ Phase 0 (v0.1.0): skeleton + mock data hardcoded. Login PIN + Layout + Dashboard + Kanban hoạt động bằng mock.
-- ⏳ Phase 1 (v0.5.0): Supabase wiring, `useStateSync` hook, fromDb/toDb mappers, CRUD thật.
-- ⏳ Phase 2 (v1.0.0): Realtime + Timeline + Goals + My Tasks + Settings + Activity log.
-- ⏳ Phase 3 (v1.1.0): Responsive đầy đủ, notification, search/filter, export CSV.
+- ✅ Phase 1 (v0.5.0): Supabase wired, `useStateSync` hook (diff-wrapper auto-sync), mappers, login PIN từ DB, Task Detail Modal + Quick Create, CRUD đủ Create/Update/Delete tasks.
+- ⏳ Phase 2 (v1.0.0): Realtime channel + Timeline + Goals view + Settings + Activity log + comment.
+- ⏳ Phase 3 (v1.1.0): Responsive polish, notification, search/filter, export CSV.
 
 ## Environment
-- Supabase URL: (paste khi setup Phase 1, hiện = `"YOUR_SUPABASE_URL_HERE"` trong index.html)
-- Supabase anon key: (paste khi setup — anon OK public, service_role KHÔNG BAO GIỜ commit)
-- GitHub Pages URL: (paste sau deploy)
+- Supabase URL: `https://oczwzcmgqcdjrozgyisr.supabase.co` (hardcoded trong `index.html`)
+- Supabase publishable key: `sb_publishable_...` (OK public, format mới thay cho `anon` key — đừng dùng `service_role` key)
+- GitHub repo: https://github.com/nant37ftu/MHX2026.git
+- GitHub Pages URL: (paste sau khi bật Pages)
+
+## Sync architecture
+- `useStateSync(table, fromDb, toDb, onError)` ở `index.html` line ~360-410.
+- Setter tự diff prev/next theo `id` → gọi `sb.from(table).upsert(toDb(item))` cho insert/update, `delete().eq('id', id)` cho row biến mất.
+- `JSON.stringify` để so prev vs next item — nếu giống hệt thì skip upsert.
+- Phase 2 sẽ thêm 1 channel realtime subscribe 4 bảng → handler dedupe (PLAYBOOK 6.2) để tránh re-render loop khi nhận lại update của chính mình.
 
 ## Pitfalls đã gặp
 (Sẽ điền dần khi gặp)
