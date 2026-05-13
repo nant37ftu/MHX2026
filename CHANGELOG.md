@@ -2,6 +2,23 @@
 
 Tất cả thay đổi đáng chú ý của LeadHub. Format theo [Keep a Changelog](https://keepachangelog.com), versioning theo [SemVer](https://semver.org/).
 
+## [1.1.0] — 2026-05-13
+
+### Added
+- **Kanban search & filter:** thanh tìm kiếm theo tên task + dropdown lọc theo mảng, người phụ trách, mức ưu tiên. Nút "Xoá bộ lọc" khi có filter active. Áp dụng cho cả Kanban và Việc của tôi.
+- **Drag & drop Kanban:** kéo thả card giữa các cột để đổi status nhanh. Highlight cột đích khi kéo qua, auto-log activity `status_change`, tự set/clear `done_at`.
+- **Export CSV:** nút "📥 CSV" trên TopBar, xuất toàn bộ task ra file `.csv` UTF-8 BOM (mở Excel không lỗi font). Cột: Title, Status, Priority, Area, Assignee, Goal, Start, Due, Done, Description.
+- **Browser notification:** nút 🔔/🔕 trên TopBar, opt-in xin quyền Notification API. Khi có task quá hạn → gửi notification (tối đa 1 lần / 30 phút). Persist bật/tắt vào `localStorage`.
+- **Responsive polish:** modal full-width trên mobile, filter bar wrap đẹp, goals grid 1 cột trên mobile, section-head stack dọc trên ≤480px, topbar compact hơn.
+
+### Changed
+- Bump `VERSION` 1.0.0 → 1.1.0.
+- `Kanban` component nhận thêm props `onMoveTask`, `showFilter`. State `search/fArea/fAssignee/fPriority` nội bộ.
+- `TopBar` nhận thêm props `onExport`, `notifEnabled`, `onToggleNotif`, `overdueCount`.
+- CSS mới: `.kb-filter-bar`, `.kb-card.dragging`, `.kb-col.drag-over`, `.notif-btn`, responsive breakpoint 768px & 480px mở rộng.
+
+---
+
 ## [1.0.0] — 2026-05-13
 
 ### Added

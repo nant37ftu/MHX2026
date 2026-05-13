@@ -66,7 +66,7 @@ Role là `text` trong DB (không enum) — rename/thêm role không cần migrat
 - ✅ Phase 0 (v0.1.0): skeleton + mock data hardcoded. Login PIN + Layout + Dashboard + Kanban hoạt động bằng mock.
 - ✅ Phase 1 (v0.5.0): Supabase wired, `useStateSync` hook (diff-wrapper auto-sync), mappers, login PIN từ DB, Task Detail Modal + Quick Create, CRUD đủ Create/Update/Delete tasks.
 - ✅ Phase 2 (v1.0.0): Realtime channel 4 tables + auto-reconnect, Timeline (Gantt-lite) zoom Week/Month + group Area/Assignee, Goals view + Create Goal, Settings 3 tabs (Users/Project/About), Activity log + comment + auto-log status_change/assigned/edited/created.
-- ⏳ Phase 3 (v1.1.0): Responsive polish, browser notification, search/filter Kanban, export CSV, drag-drop Kanban.
+- ✅ Phase 3 (v1.1.0): Responsive polish, browser notification, search/filter Kanban, export CSV, drag-drop Kanban.
 
 ## Environment
 - Supabase URL: `https://oczwzcmgqcdjrozgyisr.supabase.co` (hardcoded trong `index.html`)

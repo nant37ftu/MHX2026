@@ -504,6 +504,41 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 .comment-input textarea { flex: 1; min-height: 40px; max-height: 120px; padding: 8px 10px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); resize: vertical; font-size: 13px; font-family: inherit; outline: none; }
 .comment-input textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-bg); }
 
+/* ============================== KANBAN FILTER BAR ============================== */
+.kb-filter-bar {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap;
+}
+.kb-filter-bar .search-box {
+  flex: 1; min-width: 180px; max-width: 320px;
+  padding: 7px 10px 7px 32px; border: 1px solid var(--border);
+  border-radius: var(--radius-sm); background: var(--surface);
+  font-size: 13px; color: var(--text); outline: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2394A3B8' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.242.156a5 5 0 1 1 0-10 5 5 0 0 1 0 10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: 9px center;
+}
+.kb-filter-bar .search-box:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-bg); }
+.kb-filter-bar .filter-select {
+  padding: 7px 10px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+  background: var(--surface); font-size: 12px; color: var(--text); outline: none;
+}
+.kb-filter-bar .filter-select:focus { border-color: var(--primary); }
+.kb-filter-bar .clear-btn { font-size: 11px; color: var(--text-muted); background: transparent; border: none; padding: 4px 8px; border-radius: 4px; }
+.kb-filter-bar .clear-btn:hover { background: var(--surface-alt); color: var(--danger); }
+
+/* ============================== DRAG & DROP ============================== */
+.kb-card.dragging { opacity: .4; transform: scale(.97); }
+.kb-col.drag-over { background: var(--primary-bg); border: 2px dashed var(--primary); }
+.kb-card[draggable="true"] { cursor: grab; }
+.kb-card[draggable="true"]:active { cursor: grabbing; }
+
+/* ============================== EXPORT BAR ============================== */
+.export-bar { display: flex; align-items: center; gap: 8px; }
+
+/* ============================== NOTIFICATION BELL ============================== */
+.notif-btn { position: relative; background: transparent; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 5px 8px; font-size: 16px; cursor: pointer; }
+.notif-btn:hover { background: var(--surface-alt); }
+.notif-btn .dot { position: absolute; top: 2px; right: 2px; width: 8px; height: 8px; border-radius: 50%; background: var(--danger); }
+
 /* ============================== MISC ============================== */
 .sb-overlay { display: none; }
 
@@ -513,7 +548,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
   .kanban { overflow-x: auto; grid-auto-flow: column; grid-auto-columns: 260px; grid-template-columns: none; padding-bottom: 8px; }
 }
 @media (max-width: 768px) {
-  :root { --sidebar-w: 240px; }
+  :root { --sidebar-w: 260px; }
   .hamburger { display: inline-flex; }
   .sidebar {
     position: fixed; left: 0; top: 0; bottom: 0; z-index: 200;
@@ -528,10 +563,21 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
   .stat-card .value { font-size: 20px; }
   .meta-grid { grid-template-columns: 1fr; }
   .tl-row { grid-template-columns: 130px 1fr; }
+  .modal { max-width: 100%; margin: 10px; border-radius: 12px; }
+  .modal-body { padding: 14px; }
+  .kb-filter-bar { gap: 6px; }
+  .kb-filter-bar .search-box { min-width: 100%; max-width: 100%; }
+  .kb-filter-bar .filter-select { flex: 1; min-width: 0; }
+  .goals-grid { grid-template-columns: 1fr; }
+  .topbar { padding: 0 12px; gap: 8px; }
+  .tb-title { font-size: 14px; }
+  .tl-toolbar { gap: 8px; }
 }
 @media (max-width: 480px) {
   .stat-grid { grid-template-columns: 1fr; }
   .login-card { padding: 22px 18px; }
+  .section-head { flex-direction: column; align-items: stretch; gap: 8px; }
+  .section-head .btn { width: 100%; justify-content: center; }
 }
 </style>
 </head>
@@ -544,7 +590,7 @@ const { useState, useEffect, useRef, useCallback, useMemo } = React;
 // =====================================================
 // CONFIG
 // =====================================================
-const VERSION = "1.0.0";
+const VERSION = "1.1.0";
 
 const SUPABASE_URL = "https://oczwzcmgqcdjrozgyisr.supabase.co";
 const SUPABASE_KEY = "sb_publishable_RPYFrPM8CH32qHvODzkC_Q_Autu1lRC";
@@ -627,6 +673,40 @@ const newId = () => {
 const toDate = (s) => s ? new Date(s) : null;
 const daysBetween = (a, b) => Math.round((b - a) / 86400000);
 const addDays = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
+
+// Export CSV
+const exportTasksCsv = (tasks, users, goals) => {
+  const userById = Object.fromEntries(users.map(u => [u.id, u]));
+  const goalById = Object.fromEntries(goals.map(g => [g.id, g]));
+  const esc = (v) => {
+    const s = String(v ?? "");
+    return s.includes(",") || s.includes('"') || s.includes("\n") ? `"${s.replace(/"/g, '""')}"` : s;
+  };
+  const header = ["Title","Status","Priority","Area","Assignee","Goal","Start","Due","Done","Description"];
+  const rows = tasks.map(t => [
+    esc(t.title), esc(t.status), esc(t.priority), esc(AREA_LABEL[t.area] || t.area),
+    esc(userById[t.assigneeId]?.fullName || ""), esc(goalById[t.goalId]?.title || ""),
+    esc(t.startAt || ""), esc(t.dueAt || ""), esc(t.doneAt || ""), esc(t.description || ""),
+  ].join(","));
+  const csv = [header.join(","), ...rows].join("\n");
+  const blob = new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = `leadhub-tasks-${new Date().toISOString().slice(0,10)}.csv`;
+  a.click(); URL.revokeObjectURL(url);
+};
+
+// Browser notifications
+const requestNotifPermission = async () => {
+  if (!("Notification" in window)) return "unsupported";
+  if (Notification.permission === "granted") return "granted";
+  const result = await Notification.requestPermission();
+  return result;
+};
+const sendNotif = (title, body, icon) => {
+  if (Notification.permission !== "granted") return;
+  try { new Notification(title, { body, icon: icon || undefined, tag: "leadhub" }); } catch {}
+};
 
 // =====================================================
 // useStateSync — diff-wrapper auto-sync + realtime support
@@ -874,12 +954,17 @@ function Sidebar({ open, onClose, screen, setScreen, currentUser, projectName, o
 // =====================================================
 // TOPBAR
 // =====================================================
-function TopBar({ title, onMenu, onQuickAdd }) {
+function TopBar({ title, onMenu, onQuickAdd, onExport, notifEnabled, onToggleNotif, overdueCount }) {
   return (
     <header className="topbar">
       <button className="hamburger" onClick={onMenu} aria-label="menu">☰</button>
       <div className="tb-title">{title}</div>
       <div className="tb-actions">
+        {onExport && <button className="btn sm" onClick={onExport} title="Xuất CSV">📥 CSV</button>}
+        <button className="notif-btn" onClick={onToggleNotif} title={notifEnabled ? "Tắt thông báo" : "Bật thông báo"}>
+          {notifEnabled ? "🔔" : "🔕"}
+          {overdueCount > 0 && notifEnabled && <span className="dot" />}
+        </button>
         <button className="btn primary" onClick={onQuickAdd}>+ Task</button>
       </div>
     </header>
@@ -944,41 +1029,99 @@ function Dashboard({ tasks, goals, onOpenTask }) {
 }
 
 // =====================================================
-// KANBAN
+// KANBAN — with search/filter + drag-drop
 // =====================================================
-function Kanban({ tasks, users, onCardClick, onAddInCol, emptyMsg }) {
+function Kanban({ tasks, users, onCardClick, onAddInCol, onMoveTask, emptyMsg, showFilter }) {
   const userById = useMemo(() => Object.fromEntries(users.map(u => [u.id, u])), [users]);
-  if (tasks.length === 0 && emptyMsg) return <Placeholder icon="▤" title="Chưa có task" note={emptyMsg} />;
+  const [search, setSearch] = useState("");
+  const [fArea, setFArea] = useState("");
+  const [fAssignee, setFAssignee] = useState("");
+  const [fPriority, setFPriority] = useState("");
+  const [dragId, setDragId] = useState(null);
+  const [dragOver, setDragOver] = useState(null);
+
+  const hasFilter = search || fArea || fAssignee || fPriority;
+  const filtered = useMemo(() => {
+    let list = tasks;
+    if (search) { const q = search.toLowerCase(); list = list.filter(t => t.title.toLowerCase().includes(q)); }
+    if (fArea) list = list.filter(t => t.area === fArea);
+    if (fAssignee) list = list.filter(t => t.assigneeId === fAssignee);
+    if (fPriority) list = list.filter(t => t.priority === fPriority);
+    return list;
+  }, [tasks, search, fArea, fAssignee, fPriority]);
+
+  const clearFilters = () => { setSearch(""); setFArea(""); setFAssignee(""); setFPriority(""); };
+
+  // Drag handlers
+  const onDragStart = (e, taskId) => { setDragId(taskId); e.dataTransfer.effectAllowed = "move"; };
+  const onDragEnd = () => { setDragId(null); setDragOver(null); };
+  const onDragOverCol = (e, colK) => { e.preventDefault(); e.dataTransfer.dropEffect = "move"; setDragOver(colK); };
+  const onDragLeaveCol = () => setDragOver(null);
+  const onDrop = (e, colK) => {
+    e.preventDefault(); setDragOver(null);
+    if (!dragId || !onMoveTask) return;
+    const task = tasks.find(t => t.id === dragId);
+    if (task && task.status !== colK) onMoveTask(task, colK);
+    setDragId(null);
+  };
+
+  if (tasks.length === 0 && emptyMsg && !hasFilter) return <Placeholder icon="▤" title="Chưa có task" note={emptyMsg} />;
   return (
-    <div className="kanban">
-      {STATUS_COLS.map(col => {
-        const items = tasks.filter(t => t.status === col.k);
-        return (
-          <div key={col.k} className="kb-col">
-            <div className="kb-col-head">
-              <span className="dot" style={{ background: col.color }} />
-              <span>{col.label}</span>
-              <span className="count">{items.length}</span>
-              <button className="plus" title="Thêm task" onClick={() => onAddInCol?.(col.k)}>+</button>
-            </div>
-            {items.map(t => {
-              const u = userById[t.assigneeId];
-              return (
-                <div key={t.id} className="kb-card" onClick={() => onCardClick?.(t)}>
-                  <div className="title">{t.title}</div>
-                  <div className="meta">
-                    <span className={`badge area-${t.area}`}>{AREA_LABEL[t.area] || t.area}</span>
-                    <span className={`badge pri-${t.priority}`}>{t.priority}</span>
-                    {u && <span className="avatar" style={{ background: u.color }} title={u.fullName}>{initials(u.fullName)}</span>}
-                    {t.dueAt && <span className={`due-tag ${isOverdue(t.dueAt) ? "overdue" : ""}`}>{fmtDate(t.dueAt)}</span>}
+    <div>
+      {showFilter !== false && (
+        <div className="kb-filter-bar">
+          <input className="search-box" type="text" placeholder="Tìm task…" value={search} onChange={e => setSearch(e.target.value)} />
+          <select className="filter-select" value={fArea} onChange={e => setFArea(e.target.value)}>
+            <option value="">Tất cả mảng</option>
+            {AREA_OPTS.map(a => <option key={a} value={a}>{AREA_LABEL[a]}</option>)}
+          </select>
+          <select className="filter-select" value={fAssignee} onChange={e => setFAssignee(e.target.value)}>
+            <option value="">Tất cả người</option>
+            {users.filter(u => u.isActive).map(u => <option key={u.id} value={u.id}>{u.fullName}</option>)}
+          </select>
+          <select className="filter-select" value={fPriority} onChange={e => setFPriority(e.target.value)}>
+            <option value="">Tất cả ưu tiên</option>
+            {PRIORITY_OPTS.map(p => <option key={p} value={p}>{p}</option>)}
+          </select>
+          {hasFilter && <button className="clear-btn" onClick={clearFilters}>✕ Xoá bộ lọc</button>}
+        </div>
+      )}
+      <div className="kanban">
+        {STATUS_COLS.map(col => {
+          const items = filtered.filter(t => t.status === col.k);
+          return (
+            <div key={col.k} className={`kb-col ${dragOver === col.k ? "drag-over" : ""}`}
+              onDragOver={e => onDragOverCol(e, col.k)} onDragLeave={onDragLeaveCol} onDrop={e => onDrop(e, col.k)}>
+              <div className="kb-col-head">
+                <span className="dot" style={{ background: col.color }} />
+                <span>{col.label}</span>
+                <span className="count">{items.length}</span>
+                <button className="plus" title="Thêm task" onClick={() => onAddInCol?.(col.k)}>+</button>
+              </div>
+              {items.map(t => {
+                const u = userById[t.assigneeId];
+                return (
+                  <div key={t.id} className={`kb-card ${dragId === t.id ? "dragging" : ""}`}
+                    draggable="true"
+                    onDragStart={e => onDragStart(e, t.id)}
+                    onDragEnd={onDragEnd}
+                    onClick={() => onCardClick?.(t)}>
+                    <div className="title">{t.title}</div>
+                    <div className="meta">
+                      <span className={`badge area-${t.area}`}>{AREA_LABEL[t.area] || t.area}</span>
+                      <span className={`badge pri-${t.priority}`}>{t.priority}</span>
+                      {u && <span className="avatar" style={{ background: u.color }} title={u.fullName}>{initials(u.fullName)}</span>}
+                      {t.dueAt && <span className={`due-tag ${isOverdue(t.dueAt) ? "overdue" : ""}`}>{fmtDate(t.dueAt)}</span>}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-            {items.length === 0 && <div style={{ fontSize: 12, color: "var(--text-faint)", textAlign: "center", padding: "16px 0" }}>Trống</div>}
-          </div>
-        );
-      })}
+                );
+              })}
+              {items.length === 0 && <div style={{ fontSize: 12, color: "var(--text-faint)", textAlign: "center", padding: "16px 0" }}>Trống</div>}
+            </div>
+          );
+        })}
+      </div>
+      {hasFilter && filtered.length === 0 && <div style={{ textAlign: "center", color: "var(--text-muted)", fontSize: 13, padding: 32 }}>Không tìm thấy task nào phù hợp bộ lọc.</div>}
     </div>
   );
 }
@@ -1621,6 +1764,7 @@ function App() {
   const [openTask,  setOpenTask]  = useState(null);
   const [quickAdd,  setQuickAdd]  = useState(null);
   const [goalAdd,   setGoalAdd]   = useState(false);
+  const [notifEnabled, setNotifEnabled] = useState(() => localStorage.getItem("leadhub_notif") === "1");
 
   const project = projects[0] || null;
 
@@ -1704,6 +1848,43 @@ function App() {
     toast("Đã xoá mục tiêu", "warn");
   };
 
+  // ----- DRAG-DROP MOVE TASK -----
+  const moveTask = (task, newStatus) => {
+    const next = { ...task, status: newStatus, updatedAt: new Date().toISOString() };
+    if (newStatus === "done" && !next.doneAt) next.doneAt = new Date().toISOString();
+    if (newStatus !== "done") next.doneAt = null;
+    setTasks(arr => arr.map(t => t.id === next.id ? next : t));
+    logActivity(next.id, "status_change", { from: task.status, to: newStatus });
+    toast(`Chuyển "${task.title}" → ${newStatus}`, "success");
+  };
+
+  // ----- EXPORT CSV -----
+  const handleExport = () => exportTasksCsv(tasks, users, goals);
+
+  // ----- NOTIFICATION -----
+  const toggleNotif = async () => {
+    if (!notifEnabled) {
+      const perm = await requestNotifPermission();
+      if (perm === "granted") { setNotifEnabled(true); localStorage.setItem("leadhub_notif", "1"); toast("Đã bật thông báo trình duyệt", "success"); }
+      else if (perm === "unsupported") toast("Trình duyệt không hỗ trợ thông báo", "warn");
+      else toast("Bạn đã từ chối quyền thông báo. Vào cài đặt trình duyệt để bật lại.", "warn");
+    } else {
+      setNotifEnabled(false); localStorage.removeItem("leadhub_notif");
+      toast("Đã tắt thông báo", "info");
+    }
+  };
+  const overdueCount = useMemo(() => tasks.filter(t => isOverdue(t.dueAt) && t.status !== "done").length, [tasks]);
+
+  // Send notification once when overdue tasks detected
+  const lastNotifRef = useRef(0);
+  useEffect(() => {
+    if (!notifEnabled || !currentUser || overdueCount === 0) return;
+    const now = Date.now();
+    if (now - lastNotifRef.current < 1800000) return; // max once per 30min
+    lastNotifRef.current = now;
+    sendNotif("LeadHub — Task quá hạn", `Bạn có ${overdueCount} task đã quá deadline. Kiểm tra ngay!`);
+  }, [notifEnabled, currentUser, overdueCount]);
+
   // ----- LOGIN GATE -----
   if (!currentUser) {
     return (
@@ -1734,13 +1915,13 @@ function App() {
       case "dashboard":
         body = <Dashboard tasks={tasks} goals={goals} onOpenTask={setOpenTask} />; break;
       case "kanban":
-        body = <Kanban tasks={tasks} users={users} onCardClick={setOpenTask} onAddInCol={(s) => setQuickAdd({ status: s })} emptyMsg="Bấm '+ Task' để tạo task đầu tiên." />; break;
+        body = <Kanban tasks={tasks} users={users} onCardClick={setOpenTask} onAddInCol={(s) => setQuickAdd({ status: s })} onMoveTask={moveTask} emptyMsg="Bấm '+ Task' để tạo task đầu tiên." showFilter />; break;
       case "timeline":
         body = <Timeline tasks={tasks} users={users} onTaskClick={setOpenTask} />; break;
       case "goals":
         body = <GoalsView goals={goals} tasks={tasks} users={users} onOpenTask={setOpenTask} onCreateGoal={() => setGoalAdd(true)} onUpdateGoal={(g) => setGoals(arr => arr.map(x => x.id === g.id ? g : x))} onDeleteGoal={deleteGoal} currentUser={currentUser} />; break;
       case "mytasks":
-        body = <Kanban tasks={myTasks} users={users} onCardClick={setOpenTask} onAddInCol={(s) => setQuickAdd({ status: s })} emptyMsg="Bạn chưa được gán task nào. Bấm '+ Task' để tự tạo." />; break;
+        body = <Kanban tasks={myTasks} users={users} onCardClick={setOpenTask} onAddInCol={(s) => setQuickAdd({ status: s })} onMoveTask={moveTask} emptyMsg="Bạn chưa được gán task nào. Bấm '+ Task' để tự tạo." showFilter />; break;
       case "settings":
         body = perms.canManageUsers
           ? <SettingsView users={users} setUsers={setUsers} project={project} setProjects={setProjects} currentUser={currentUser} toast={toast} />
@@ -1757,7 +1938,8 @@ function App() {
         <Sidebar open={sbOpen} onClose={() => setSbOpen(false)} screen={screen} setScreen={setScreen}
           currentUser={currentUser} projectName={project?.name} onLogout={logout} connStatus={connStatus} />
         <main className="app-main">
-          <TopBar title={screenTitle} onMenu={() => setSbOpen(true)} onQuickAdd={() => setQuickAdd({ status: "todo" })} />
+          <TopBar title={screenTitle} onMenu={() => setSbOpen(true)} onQuickAdd={() => setQuickAdd({ status: "todo" })}
+            onExport={handleExport} notifEnabled={notifEnabled} onToggleNotif={toggleNotif} overdueCount={overdueCount} />
           <div className="content">{body}</div>
         </main>
       </div>
